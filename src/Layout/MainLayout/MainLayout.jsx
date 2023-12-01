@@ -1,16 +1,17 @@
-import React from 'react'
-import Header from '../../Components/Header'
-import Footer from '../../Components/Footer'
-import { Outlet } from 'react-router-dom'
+import React from "react";
+
+import Footer from "../../Components/Footer";
+import { Outlet } from "react-router-dom";
+import Header from "../../Components/Header";
 
 const MainLayout = () => {
   return (
-    <div>
-        <Header/>
-        <Outlet/>
-        <Footer/>
-    </div>
-  )
-}
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
-export default MainLayout
+export default MainLayout;
