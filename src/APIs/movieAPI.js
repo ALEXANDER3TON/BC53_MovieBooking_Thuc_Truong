@@ -30,7 +30,7 @@ export const getMovieDetailsAPI = async (movieID) => {
                 maPhim: movieID,
             },
         })
-        return response.data.content
+        return response.data.content;
     } catch (error) {
         
     }
