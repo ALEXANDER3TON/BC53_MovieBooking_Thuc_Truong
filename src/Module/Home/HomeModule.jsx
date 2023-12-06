@@ -1,17 +1,17 @@
-import React from 'react'
-import Banner from './Banner/Banner'
-import Cinema from './Cinema/Cinema'
-import Showing from './Showing/Showing'
+import React from "react";
+import Banner from "./Banner/Banner";
 
+import Showing from "./Showing/Showing";
+import QuickBooking from "./QuickBooking";
 
 const HomeModule = () => {
   return (
     <div>
-      <Banner/>
-      <Cinema/>
-      <Showing/>
+      <Banner />
+      <QuickBooking/>
+      <Showing />
     </div>
-  )
-}
+  );
+};
 
-export default HomeModule
+export default HomeModule;
