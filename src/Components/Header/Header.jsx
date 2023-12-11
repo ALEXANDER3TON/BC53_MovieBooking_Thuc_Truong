@@ -1,10 +1,13 @@
 import React from "react";
-import '../../Style/base.css'
-import './style.scss'
+import '../../Style/base.scss'
+import { useNavigate } from "react-router-dom";
+import { PATH } from "../../Routes/path";
+
 const Header = () => {
+  const navigate = useNavigate()
   return (
     <div>
-      <nav className="container d-flex justify-content-between">
+      <nav className=" d-flex justify-content-between">
         <div className="logo fs-1">
           <a href="" >
             <span className="fa-brands fa-joomla " />
@@ -27,8 +30,8 @@ const Header = () => {
           </ul>
         </div>
         <div className="user">
-          <button>Sign In</button>
-          <button>Sign Up</button>
+          <button onClick={() => navigate(PATH.SIGN_IN)}>Sign In</button>
+          <button onClick={() => navigate(PATH.SiGN_UP)}>Sign Up</button>
         </div>
       </nav>
     </div>

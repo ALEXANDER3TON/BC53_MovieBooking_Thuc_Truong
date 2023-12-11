@@ -1,7 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { getMovieShowTimesAPIs } from "../../../APIs/cinemaAPIs";
-import { Box, Tab, Tabs, Typography, Container, Stack } from "@mui/material";
+import {
+  Box,
+  Tab,
+  Tabs,
+  Typography,
+  Container,
+  Stack,
+  Button,
+} from "@mui/material";
+import dayjs from "dayjs";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,29 +71,46 @@ const ShowTimes = ({ movieID }) => {
           variant="scrollable"
           sx={{ borderRight: 1, borderColor: "divider" }}
           value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
         >
           {cinemaSystem.map((rap) => {
             return (
               <Tab
-                onClick={() => handleChange(rap.maHeThongRap)}
                 label={<img src={rap.logo} alt="..." style={{ width: 80 }} />}
                 key={rap.maHeThongRap}
-                value={value}
+                value={rap.maHeThongRap}
                 {...a11yProps(rap.maHeThongRap)}
               ></Tab>
             );
           })}
           ;
         </Tabs>
-        {cinemaSystem.map((rap) => {
-          // console.log(rap)
+        {cinemaSystem.map((cumRap) => {
           return (
             <TabPanel
               value={value}
-              index={rap.maHeThongRap}
-              key={rap.maHeThongRap}
+              index={cumRap.maHeThongRap}
+              key={cumRap.maHeThongRap}
             >
-              {rap.tenHeThongRap}
+              {cumRap.cumRapChieu.map((rap) => {
+                return (
+                  <Box sx={{ marginBottom: 6 }} key={rap.maCumRap}>
+                    <Typography variant={"h5"} sx={{ marginBottom: 1 }}>
+                      {rap.tenCumRap}
+                    </Typography>
+                    <Stack spacing={2} direction={"row"}>
+                      {rap.lichChieuPhim.map((suat) => {
+                        const times = dayjs(suat.ngayChieuGioChieu).format(
+                          "DD/MM/YYYY ~ hh:mm"
+                        );
+                        return <Button variant="outlined">{times}</Button>;
+                      })}
+                    </Stack>
+                  </Box>
+                );
+              })}
             </TabPanel>
           );
         })}

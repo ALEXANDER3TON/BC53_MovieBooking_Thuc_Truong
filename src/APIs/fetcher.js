@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const fetcher = axios.create({
     baseURL:"https://movienew.cybersoft.edu.vn/api",
     headers:{
@@ -7,4 +8,4 @@ const fetcher = axios.create({
     }
 });
 
-export default fetcher;
+
