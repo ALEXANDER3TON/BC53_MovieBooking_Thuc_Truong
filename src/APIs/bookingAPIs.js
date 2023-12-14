@@ -14,7 +14,7 @@ export const getListBookingAPI = async (movieBookingID) => {
 export const bookingAPI = async (payload) => {
   
   try {
-    console.log('payload', payload)
+   
     const response = await fetcher.post("/QuanLyDatVe/DatVe/", payload)
     return response.data.content
   } catch (error) {

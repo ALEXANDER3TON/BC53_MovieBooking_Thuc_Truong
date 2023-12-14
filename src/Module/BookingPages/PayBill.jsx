@@ -13,22 +13,29 @@ import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import style from "./bookingStyle.module.scss";
 import CurrencyFormat from "react-currency-format";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { bookingAPI } from "../../APIs/bookingAPIs";
+import { BookingPageAction } from "../../Store/BookingPagesSlice/slice";
 
 const PayBill = ({ movieInfo = {} }) => {
-  console.log("movieInfo", movieInfo);
+  const queryClient = useQueryClient();
+  const dispatch = useDispatch();
+
   const movieID = movieInfo.maLichChieu;
+
   const { chairBooking } = useSelector((state) => state.BookingPage);
+
   const gheThuong = [...chairBooking].filter(
     (item) => item.loaiGhe === "Thuong"
   );
   const gheVip = [...chairBooking].filter((item) => item.loaiGhe === "Vip");
 
-  const dispatch = useDispatch();
-
   const { mutate: handleBooking } = useMutation({
     mutationFn: (payload) => bookingAPI(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["bookings"] });
+      dispatch(BookingPageAction.clearChairBooking());
+    },
   });
   const handleBookingList = (id, list) => {
     const newList = list.map((item) => ({

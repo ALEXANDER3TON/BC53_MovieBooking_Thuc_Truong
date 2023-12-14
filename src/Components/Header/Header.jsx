@@ -1,15 +1,28 @@
-import React from "react";
-import '../../Style/base.scss'
+import React, { useEffect, useState } from "react";
+import "../../Style/base.scss";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../../Routes/path";
+import { CURRENT_USER } from "../../constant";
+import { Button, Stack, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { UserAction } from "../../Store/LogInPagesSlice/slice";
 
 const Header = () => {
-  const navigate = useNavigate()
+  const { user } = useSelector((state) => state.User);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(UserAction.setLogout("logout"));
+    navigate("/");
+  };
   return (
     <div>
       <nav className=" d-flex justify-content-between">
         <div className="logo fs-1">
-          <a href="" >
+          <a href="">
             <span className="fa-brands fa-joomla " />
           </a>
         </div>
@@ -29,10 +42,17 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div className="user">
-          <button onClick={() => navigate(PATH.SIGN_IN)}>Sign In</button>
-          <button onClick={() => navigate(PATH.SiGN_UP)}>Sign Up</button>
-        </div>
+        {user ? (
+          <Stack direction={"row"} justifyContent={"center"} alignItems={"center"}>
+            <Typography>Hello! {user.hoTen} </Typography>
+            <Button onClick={handleLogout}>LOGOUT</Button>
+          </Stack>
+        ) : (
+          <Stack direction={"row"}>
+            <Button onClick={() => navigate(PATH.REGISTER)}>Register</Button>
+            <Button onClick={() => navigate(PATH.LOG_IN)}>Log in</Button>
+          </Stack>
+        )}
       </nav>
     </div>
   );

@@ -3,8 +3,6 @@ import Chair from "./Chair";
 import { Box, Grid } from "@mui/material";
 
 const ChairList = ({ listChairInfo }) => {
-  const gheThuong = listChairInfo?.filter((item) => item.loaiGhe === "Thuong");
-  console.log("listChairInfo", listChairInfo);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container columns={10} spacing={2} justifyContent={"center"}>

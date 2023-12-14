@@ -15,7 +15,7 @@ const BookingPagse = () => {
   });
   const movieInfo = data?.thongTinPhim;
   const listChairInfo = data.danhSachGhe;
-  console.log("movieInfo", movieInfo);
+ 
   return (
     <Container>
       <Box sx={{ width: 1 }}>

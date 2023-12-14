@@ -7,6 +7,7 @@ export const getMovieShowTimesAPIs = async (movieID) => {
                 maPhim: movieID,
             }
         });
+      
         return response.data.content
         
     } catch (error) {

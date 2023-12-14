@@ -17,9 +17,7 @@ export const BookingPageSlice = createSlice({
                 state.chairBooking.push(payload)
             };
           },
-        
-          setChairBooked: (state, {payload}) => {
-            state.chairBooked = [...state.chairBooking]
+        clearChairBooking: (state, {payload}) => {
             state.chairBooking = []
         }
     }

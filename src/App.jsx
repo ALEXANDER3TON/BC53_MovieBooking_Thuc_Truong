@@ -6,6 +6,8 @@ import HomeModule from "./Module/Home/HomeModule";
 import NotFound from "./Module/NotFound";
 import Details from './Module/Details'
 import BookingPagse from "./Module/BookingPages/BookingPagse";
+import Register from "./Module/Auth/Register";
+import LogIn from "./Module/Auth/LogIn";
 
 
 function App() {
@@ -18,7 +20,8 @@ function App() {
           <Route index element={<HomeModule />} />
           <Route path={PATH.MOVIE_DETAILS} element={<Details/>} />
           <Route path={PATH.BOOKING_MOVIE} element={<BookingPagse/>}/>
-         
+          <Route path={PATH.REGISTER} element={<Register/>}/>
+          <Route path={PATH.LOG_IN} element={<LogIn/>}/>
         </Route>
 
         <Route path="*" element={<NotFound />} />
