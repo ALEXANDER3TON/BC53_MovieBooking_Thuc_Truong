@@ -14,7 +14,7 @@ const ChonPhim = ({ ListMovie, setPickedPhim }) => {
     <div>
       <Autocomplete
         {...defMovie}
-        sx={{ width: 300 }}
+        sx={{ width: 210 }}
         renderInput={(params) => <TextField {...params} label="Chọn Phim" variant="standard"/>}
         onChange={(event, value) => setPhim(value)}
       />

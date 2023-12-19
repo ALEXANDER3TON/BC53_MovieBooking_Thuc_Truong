@@ -5,6 +5,7 @@ import { getListMovieAPI } from "../../../APIs/movieAPI";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import style from './showing.module.scss'
 import cn from 'classnames'
+import "../../../Style/base.scss"
 import {
   Box,
   Button,
@@ -37,13 +38,13 @@ const Showing = () => {
   const offset = currentPage * moviePerPage;
   const currentPageMovie = data.slice(offset, offset + moviePerPage);
   return (
-    <Container maxWidth="lg">
-      <Box>
-        <Grid container spacing={3} height={999}>
+    <Container>
+      <Box >
+        <Grid container spacing={3} sx={{ margin:"auto" }}>
           {currentPageMovie.map((item) => {
             return (
               <Grid item>
-                <Card sx={{ maxWidth: "345px" }}>
+                <Card sx={{ maxWidth: "246px" }}>
                   <CardMedia
                     component="img"
                     alt=""
@@ -58,7 +59,7 @@ const Showing = () => {
                       gutterBottom
                       variant="h5"
                       component="div"
-                      className="truncate--2"
+                      className="truncate"
                       sx={{ height: 69 }}
                     >
                       {item.tenPhim}

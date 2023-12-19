@@ -12,7 +12,7 @@ import MobileMenu from "./MobileMenu";
 const Header = () => {
   return (
     <div className={cn(style.header)}>
-      <nav className="navbar container">
+      <nav className="navbar">
         <Logo />
         <MenuPages />
         <UserButton/>

@@ -16,7 +16,7 @@ const ChonRap = ({ cumRap, setRap }) => {
     <div>
       <Autocomplete
         {...defRap}
-        sx={{ width: 300 }}
+        sx={{ width: 210 }}
         renderInput={(params) => <TextField {...params} label="Chọn Rap Chiếu" variant="standard"/>}
         onChange={(event, value) => setRap(value)}
       />

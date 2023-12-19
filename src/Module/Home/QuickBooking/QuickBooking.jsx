@@ -1,4 +1,11 @@
-import { Box, Button, Container, FormControl, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  FormControl,
+  Stack,
+} from "@mui/material";
 import React, { useState } from "react";
 import ChonPhim from "./ChonPhim";
 import ChonRap from "./ChonRap";
@@ -7,13 +14,14 @@ import { useQuery } from "@tanstack/react-query";
 import { getListMovieAPI } from "../../../APIs/movieAPI";
 import { getMovieShowTimesAPIs } from "../../../APIs/cinemaAPIs";
 import { useNavigate } from "react-router-dom";
+import style from "./quickBooking.module.scss";
 
 const QuickBooking = () => {
   const [pickedIDPhim, setPickedIDPhim] = useState("");
   const [rap, setRap] = useState("");
   const [suat, setSuat] = useState("");
- console.log('suat', suat)
-  const navigate = useNavigate()
+  console.log("suat", suat);
+  const navigate = useNavigate();
 
   const { data: ListMovie = {} } = useQuery({
     queryKey: ["QUICK_BOOKING_LIST"],
@@ -31,12 +39,14 @@ const QuickBooking = () => {
 
   return (
     <Container>
-      <Box sx={{marginY: 10}}>
-        <Stack direction={"row"} justifyContent={"center"}>
+      <Box className={style.quickBooking}>
+        <Stack direction={"row"} justifyContent={"center"} divider={<Divider orientation="vertical" flexItem />} spacing={3} className={style.movieSelect}>
           <ChonPhim ListMovie={ListMovie} setPickedPhim={setPickedIDPhim} />
           <ChonRap cumRap={cumRap} setRap={setRap} />
           <ChonSuat rap={rap} setSuat={setSuat} />
-          <Button onClick={() => navigate(`booking/${suat.maLichChieu}`)}>
+          <Button onClick={() => navigate(`booking/${suat.maLichChieu}`)} sx={{
+            width:150
+          }}>
             Dat Ve
           </Button>
         </Stack>

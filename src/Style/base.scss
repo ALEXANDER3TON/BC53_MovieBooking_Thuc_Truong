@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-body{
+body {
   position: relative;
 }
 a {
@@ -35,4 +35,35 @@ li {
   -webkit-line-clamp: 3;
 
   word-break: break-all;
+}
+
+.banner {
+  .playBtn {
+    visibility: hidden;
+  }
+  &:hover {
+    .playBtn {
+      visibility: visible;
+    }
+  }
+}
+.carousel {
+  .control-prev::before {
+    border-right: 39px solid rgb(255, 255, 255) !important;
+    border-top: 39px solid transparent !important;
+    border-bottom: 39px solid transparent !important;
+  }
+  .control-next::before {
+    border-left: 39px solid rgb(255, 255, 255) !important;
+    border-top: 39px solid transparent !important;
+    border-bottom: 39px solid transparent !important;
+  }
+  .control-dots {
+    bottom: 12% !important;
+    .dot {
+      width: 21px !important;
+      height: 21px !important;
+      background-color: rgba(255, 0, 0) !important;
+    }
+  }
 }
