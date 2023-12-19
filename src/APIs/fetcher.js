@@ -10,12 +10,12 @@ const fetcher = axios.create({
 });
 
 fetcher.interceptors.request.use((config) => {
-    const user = JSON.parse(localStorage.getItem(CURRENT_USER));
-    if (user) {
-      config.headers['Authorization'] = `Bearer ${user.accessToken}`;
-    }
-    console.log("config:", config);
-    return config;
-  });
+  const user = JSON.parse(localStorage.getItem(CURRENT_USER));
+  if (user) {
+    config.headers["Authorization"] = `Bearer ${user.accessToken}`;
+  }
+
+  return config;
+});
 
 export default fetcher;
