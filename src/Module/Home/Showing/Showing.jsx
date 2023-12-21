@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { getListMovieAPI } from "../../../APIs/movieAPI";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
-import style from './showing.module.scss'
-import cn from 'classnames'
-import "../../../Style/base.scss"
+import style from "./showing.module.scss";
+import cn from "classnames";
+import "../../../Style/base.scss";
 import {
   Box,
   Button,
@@ -30,7 +30,7 @@ const Showing = () => {
   // console.log(data)
 
   const [currentPage, setCurrentPage] = useState(0);
-  const moviePerPage = 5;
+  const moviePerPage = 8;
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
   };
@@ -39,15 +39,25 @@ const Showing = () => {
   const currentPageMovie = data.slice(offset, offset + moviePerPage);
   return (
     <Container>
-      <Box >
-        <Grid container spacing={3} sx={{ margin:"auto" }}>
+      <Box
+        sx={{
+          paddingTop: "90px",
+          position: "relative",
+        }}
+      >
+        <Grid container spacing={3}>
           {currentPageMovie.map((item) => {
             return (
-              <Grid item>
-                <Card sx={{ maxWidth: "246px" }}>
+              <Grid item >
+                <Card sx={{ maxWidth: "270px" }} className={style.cardItem}>
+                  <Box className={style.overlay}>
+                    <Box>
+                      
+                    </Box>
+                  </Box>
                   <CardMedia
                     component="img"
-                    alt=""
+                    alt="..."
                     style={{
                       height: 270,
                       objectFit: "fill",
@@ -77,11 +87,12 @@ const Showing = () => {
                       size="large"
                       variant="contained"
                       fullWidth
+                      id={style.detailBtn}
                       onClick={() => {
                         navigate(`movie/${item.maPhim}`);
                       }}
                     >
-                      Chi tiet
+                      <Link>Xem Thêm</Link>
                     </Button>
                   </CardActions>
                 </Card>
@@ -91,29 +102,28 @@ const Showing = () => {
         </Grid>
 
         <Box
-            sx={{
-              display: "flex",
-              justifyContent: "end",
-              alignItems: "center",
-              height:100
-            }}
-          >
-            <>
-              <ReactPaginate
-                previousLabel={<ArrowLeft sx={{fontSize:32}}/>}
-                nextLabel={<ArrowRight sx={{fontSize:32}}/>}
-                breakLabel={"..."}
-                pageCount={pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={handlePageChange}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-                className={cn(style.pagination,)}
-                activeLinkClassName="active"
-              />
-            </>
-          </Box>
+          sx={{
+            display: "flex",
+            justifyContent: "end",
+            alignItems: "center",
+          }}
+        >
+          <>
+            <ReactPaginate
+              previousLabel={<ArrowLeft sx={{ fontSize: 32 }} />}
+              nextLabel={<ArrowRight sx={{ fontSize: 32 }} />}
+              breakLabel={"..."}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageChange}
+              containerClassName={"pagination"}
+              activeClassName={"active"}
+              className={cn(style.pagination)}
+              activeLinkClassName="active"
+            />
+          </>
+        </Box>
       </Box>
     </Container>
   );

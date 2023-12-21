@@ -1,4 +1,4 @@
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, Box, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 const ChonPhim = ({ ListMovie, setPickedPhim }) => {
@@ -11,14 +11,15 @@ const ChonPhim = ({ ListMovie, setPickedPhim }) => {
   };
 
   return (
-    <div>
+    <Box width={"24%"} >
       <Autocomplete
         {...defMovie}
-        sx={{ width: 210 }}
-        renderInput={(params) => <TextField {...params} label="Chọn Phim" variant="standard"/>}
+        renderInput={(params) => (
+          <TextField {...params} label="Chọn Phim" variant="standard" />
+        )}
         onChange={(event, value) => setPhim(value)}
       />
-    </div>
+    </Box>
   );
 };
 

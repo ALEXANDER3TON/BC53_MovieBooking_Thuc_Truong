@@ -15,15 +15,14 @@ import style from "../header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import UserButton from "../UserButton";
+
 const MobileMenu = () => {
   const { user } = useSelector((state) => state.User);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleLogout = () => {
-    dispatch(UserAction.setLogout("logout"));
-    navigate("/");
-  };
+  
   const [state, setState] = useState({
     menu: false,
   });
@@ -45,26 +44,11 @@ const MobileMenu = () => {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
+    
     >
       <List>
         <ListItem>
-          {user ? (
-            <Stack
-              direction={"row"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              <Typography>Hello! {user.hoTen} </Typography>
-              <Button onClick={handleLogout} sx={{ color: "white" }}>
-                LOGOUT
-              </Button>
-            </Stack>
-          ) : (
-            <Stack direction={"row"}>
-              <Button onClick={() => navigate(PATH.REGISTER)}>Register</Button>
-              <Button onClick={() => navigate(PATH.LOG_IN)}>Log in</Button>
-            </Stack>
-          )}
+          <UserButton/>
         </ListItem>
         <Divider />
         <ListItem disablePadding>
@@ -84,20 +68,19 @@ const MobileMenu = () => {
   );
 
   return (
-    <div className={cn(style.navMenuMobile)}>
-      <Button onClick={toggleDrawer(anchor, true)}>
-        <Typography>
-          <MenuIcon />
-        </Typography>
+    <Box className={cn(style.navMenuMobile)}  >
+      <Button onClick={toggleDrawer(anchor, true)} className={style.navMenuBtn}>
+        <MenuIcon />
       </Button>
       <Drawer
         anchor={anchor}
         open={state[anchor]}
         onClose={toggleDrawer(anchor, false)}
+        className={style.mobileMenu}
       >
         {list(anchor)}
       </Drawer>
-    </div>
+    </Box>
   );
 };
 

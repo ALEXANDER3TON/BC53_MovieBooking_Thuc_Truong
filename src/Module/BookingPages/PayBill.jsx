@@ -16,6 +16,7 @@ import CurrencyFormat from "react-currency-format";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { bookingAPI } from "../../APIs/bookingAPIs";
 import { BookingPageAction } from "../../Store/BookingPagesSlice/slice";
+import Swal from "sweetalert2";
 
 const PayBill = ({ movieInfo = {} }) => {
   const queryClient = useQueryClient();
@@ -139,7 +140,35 @@ const PayBill = ({ movieInfo = {} }) => {
             <Button
               fullWidth
               sx={{ color: "red", fontWeight: 500 }}
-              onClick={() => handleBookingList(movieID, chairBooking)}
+              onClick={() => {
+                if (chairBooking.length > 0) {
+                  Swal.fire({
+                    title: "Xác Nhận",
+                    text: "Bạn có chắc muốn đặt vé này không?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: "Hủy",
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Xác nhận",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire({
+                        title: "Trạng Thái",
+                        text: "Đặt vé thành công",
+                        icon: "success",
+                      });
+                      handleBookingList(movieID, chairBooking);
+                    }
+                  });
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Lỗi",
+                    text: "Vui lòng chọn ghế",
+                  });
+                }
+              }}
             >
               Thanh Toán
             </Button>

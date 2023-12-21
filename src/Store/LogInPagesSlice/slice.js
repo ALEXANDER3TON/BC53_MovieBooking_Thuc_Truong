@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+import Swal from "sweetalert2";
 import axios from "axios";
 import fetcher from "../../APIs/fetcher";
 import { CURRENT_USER } from "../../constant";
+
 export const loginUser = createAsyncThunk("user/loginUser", async (payload) => {
   console.log("payload", payload);
   try {
@@ -16,10 +17,10 @@ export const loginUser = createAsyncThunk("user/loginUser", async (payload) => {
 
 const initialState = {
   loading: false,
-  user: localStorage.getItem(CURRENT_USER) ? JSON.parse(localStorage.getItem(CURRENT_USER)) : null,
+  user: localStorage.getItem(CURRENT_USER)
+    ? JSON.parse(localStorage.getItem(CURRENT_USER))
+    : null,
   error: null,
-
-  
 };
 
 export const LogInPagesSlice = createSlice({

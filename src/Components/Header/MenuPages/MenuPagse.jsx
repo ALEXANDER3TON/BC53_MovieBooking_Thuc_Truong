@@ -1,21 +1,13 @@
-import {
-  Box,
-  Button,
-  List,
-  ListItem,
-  Menu,
-  MenuItem,
-  Typography,
-} from "@mui/material";
-import React, { useState } from "react";
-
+import React from "react";
+import "../../../Style/base.scss";
 import style from "../header.module.scss";
 import cn from "classnames";
+import { Box } from "@mui/material";
 
 const MenuPagse = () => {
   return (
-    <div className={cn(style.navMenu)}>
-      <ul className={style.menu}>
+    <Box className={cn(style.navMenu)} width={"63%"}>
+      <nav className={style.menu}>
         <li>
           <a href="">Lịch Chiếu</a>
         </li>
@@ -28,8 +20,8 @@ const MenuPagse = () => {
         <li>
           <a href="">Ứng Dụng</a>
         </li>
-      </ul>
-    </div>
+      </nav>
+    </Box>
   );
 };
 
