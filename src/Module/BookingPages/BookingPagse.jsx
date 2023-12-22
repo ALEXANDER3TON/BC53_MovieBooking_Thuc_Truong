@@ -20,24 +20,26 @@ const BookingPagse = () => {
   return (
     <Container>
       {isLoading ? (
-        <Lottie loop={true} animationData={loadingAnimation} style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100%", height:"669px"}}/>
+        <Lottie
+          loop={true}
+          animationData={loadingAnimation}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "669px",
+          }}
+        />
       ) : (
-        <Box sx={{ width: 1 }}>
+        <Box
+          sx={{
+            paddingTop: 12,
+          }}
+        >
           <Box display={"grid"} gridTemplateColumns={"repeat(12, 1fr)"} gap={3}>
             <Box gridColumn="span 8">
-              <Typography
-                variant="h6"
-                sx={{
-                  border: "3px solid",
-                  padding: "10px 20px",
-                  width: 540,
-                  margin: "auto",
-                  textAlign: "center",
-                  marginBottom: 3,
-                }}
-              >
-                Màn Hình
-              </Typography>
+              
               <Box sx={{ margin: "auto" }}>
                 <ChairList listChairInfo={listChairInfo} />
               </Box>

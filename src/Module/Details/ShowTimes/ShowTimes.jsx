@@ -11,6 +11,7 @@ import {
   Button,
 } from "@mui/material";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,6 +41,7 @@ function a11yProps(index) {
 }
 
 const ShowTimes = ({ movieID }) => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("");
 
   const handleChange = (newValue) => {
@@ -102,10 +104,20 @@ const ShowTimes = ({ movieID }) => {
                     </Typography>
                     <Stack spacing={2} direction={"row"}>
                       {rap.lichChieuPhim.map((suat) => {
+                        console.log('suat', suat)
                         const times = dayjs(suat.ngayChieuGioChieu).format(
                           "DD/MM/YYYY ~ hh:mm"
                         );
-                        return <Button variant="outlined">{times}</Button>;
+                        return (
+                          <Button
+                            variant="outlined"
+                            onClick={() => {
+                              navigate(`/booking/${suat.maLichChieu}`);
+                            }}
+                          >
+                            {times}
+                          </Button>
+                        );
                       })}
                     </Stack>
                   </Box>

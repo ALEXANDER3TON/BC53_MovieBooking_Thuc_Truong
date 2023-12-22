@@ -5,8 +5,8 @@
   top: 0;
   left: 0;
   z-index: 99;
-  background-color: white;
-  overflow: hidden;
+  background-color: orange;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   .navbar {
     position: relative;
     display: flex;
@@ -16,14 +16,7 @@
     width: 100%;
   }
 }
-//logo
-.logo {
-  a {
-    font-weight: 600;
-    color: rgb(255, 0, 0);
-    font-size: 39px;
-  }
-}
+
 //Menu
 .navMenu {
   .menu {
@@ -44,7 +37,7 @@
         text-decoration: none;
         text-transform: uppercase;
         padding: 9px 12px;
-        
+
         transition: all 0.3s ease;
         z-index: 1;
       }
@@ -56,15 +49,15 @@
         top: 0;
         right: 0;
         z-index: -1;
+        
+        border-radius: 6px;
         background: #ff0000;
         box-shadow: 0 0 20px #ff0000;
-        transition: all 0.3s ease;
-        
+        transition: all 0.3s ease-in-out;
       }
       &:hover {
         a {
           color: aliceblue;
-          
         }
         a::before {
           bottom: 0;
@@ -86,5 +79,4 @@
   .navMenuMobile {
     display: block;
   }
-  
 }

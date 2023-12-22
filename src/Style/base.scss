@@ -5,6 +5,7 @@
 }
 body {
   position: relative;
+  
 }
 a {
   text-decoration: none;
@@ -37,16 +38,7 @@ li {
   word-break: break-all;
 }
 
-.banner {
-  .playBtn {
-    visibility: hidden;
-  }
-  &:hover {
-    .playBtn {
-      visibility: visible;
-    }
-  }
-}
+
 .carousel {
   .control-prev::before {
     border-right: 39px solid rgb(255, 255, 255) !important;

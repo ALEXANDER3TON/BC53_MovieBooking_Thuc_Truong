@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import style from "../header.module.scss"
+import style from "../header.module.scss";
+import logo from "../../../constant/logo.png"
+import { Box, CardMedia, Typography } from "@mui/material";
 const Logo = () => {
   return (
-    <div className={style.logo}>
+    <Box className={style.logo}>
       <Link to="/">
-        CyberFilm
+        <img src={logo} alt="" style={{
+          width:"90px",
+          height: "60px"
+        }}/>
       </Link>
-    </div>
+    </Box>
   );
 };
 

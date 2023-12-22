@@ -12,6 +12,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cn from "classnames";
 import style from "./bookingStyle.module.scss";
+import "../../Style/base.scss";
 import CurrencyFormat from "react-currency-format";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { bookingAPI } from "../../APIs/bookingAPIs";
@@ -48,12 +49,15 @@ const PayBill = ({ movieInfo = {} }) => {
   };
   return (
     <Box>
+      <Box>
+        
+      </Box>
       <Card sx={{ padding: 1 }}>
         <Box sx={{ display: "flex" }}>
           <CardMedia
             component="img"
             image={movieInfo.hinhAnh}
-            sx={{ width: "30%" }}
+            sx={{ width: "123px", height: "150px", objectFit: "fill" }}
             alt="..."
           />
           <CardHeader title={movieInfo.tenPhim} />
@@ -68,7 +72,7 @@ const PayBill = ({ movieInfo = {} }) => {
           <Divider sx={{ height: "1px", background: "red", marginY: 1 }} />
           <Box>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography sx={{ marginBottom: 1 }}>
+              <Typography>
                 Ghế Thường:{"  "}
                 {gheThuong.length > 0 ? `x${gheThuong.length}` : ""}
               </Typography>
@@ -137,9 +141,13 @@ const PayBill = ({ movieInfo = {} }) => {
                 suffix={"VND"}
               />
             </Box>
-            <Button
+            <Box
               fullWidth
-              sx={{ color: "red", fontWeight: 500 }}
+              className="btnStyle"
+              sx={{
+                width: "90%",
+                margin: "auto",
+              }}
               onClick={() => {
                 if (chairBooking.length > 0) {
                   Swal.fire({
@@ -171,7 +179,7 @@ const PayBill = ({ movieInfo = {} }) => {
               }}
             >
               Thanh Toán
-            </Button>
+            </Box>
           </Box>
         </CardContent>
       </Card>

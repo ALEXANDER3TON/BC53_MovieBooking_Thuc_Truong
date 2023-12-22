@@ -9,8 +9,9 @@ import style from "./banner.module.scss";
 import "../../../Style/base.scss"
 import PlayCircleFilledSharpIcon from "@mui/icons-material/PlayCircleFilledSharp";
 
-import Trailer from "./Trailer";
+
 import { Carousel } from "react-responsive-carousel";
+import Trailer from "../Trailer";
 
 const Banner = () => {
   const [openTrailer, setOpenTrailer] = useState(false);

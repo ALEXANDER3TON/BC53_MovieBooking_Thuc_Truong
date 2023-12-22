@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import style from "./showing.module.scss";
 import cn from "classnames";
 import "../../../Style/base.scss";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import {
   Box,
   Button,
@@ -18,6 +19,8 @@ import {
   Typography,
 } from "@mui/material";
 import ReactPaginate from "react-paginate";
+import { green } from "@mui/material/colors";
+import Trailer from "../Trailer";
 
 const Showing = () => {
   const navigate = useNavigate();
@@ -37,6 +40,13 @@ const Showing = () => {
   const pageCount = Math.ceil(data.length / moviePerPage);
   const offset = currentPage * moviePerPage;
   const currentPageMovie = data.slice(offset, offset + moviePerPage);
+
+  const [openTrailer, setOpenTrailer] = useState(false);
+  const [movieID, setMovieID] = useState("");
+  const handleOpenTrailer = (id) => {
+    setOpenTrailer(!openTrailer);
+    setMovieID(id);
+  };
   return (
     <Container>
       <Box
@@ -46,14 +56,37 @@ const Showing = () => {
         }}
       >
         <Grid container spacing={3}>
-          {currentPageMovie.map((item) => {
+          {currentPageMovie.map((phim) => {
+            console.log("item", phim);
             return (
-              <Grid item >
+              <Grid item>
                 <Card sx={{ maxWidth: "270px" }} className={style.cardItem}>
-                  <Box className={style.overlay}>
-                    <Box>
-                      
-                    </Box>
+                  <Box
+                    className={style.overlay}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      background: "rgba(0,0,0,0.5)",
+                    }}
+                  >
+                    <Button
+                      onClick={() => {
+                        handleOpenTrailer(phim.maPhim);
+                      }}
+                    >
+                      <PlayCircleOutlineIcon
+                        sx={{
+                          width: "3rem",
+                          height: "3rem",
+                          borderRadius: "50%",
+                          boxShadow:
+                            "0 0 6px 3px #fff, 0 0 10px 6px #f0f, 0 0 14px 9px #0ff",
+                          fontSize: "3rem",
+                          color: "#e700ff",
+                        }}
+                      />
+                    </Button>
                   </Box>
                   <CardMedia
                     component="img"
@@ -62,7 +95,7 @@ const Showing = () => {
                       height: 270,
                       objectFit: "fill",
                     }}
-                    image={item.hinhAnh}
+                    image={phim.hinhAnh}
                   />
                   <CardContent>
                     <Typography
@@ -72,14 +105,14 @@ const Showing = () => {
                       className="truncate"
                       sx={{ height: 69 }}
                     >
-                      {item.tenPhim}
+                      {phim.tenPhim}
                     </Typography>
                     <Typography
                       variant="body2"
                       color="text.secondary"
                       className="truncate"
                     >
-                      {item.moTa}
+                      {phim.moTa}
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -89,7 +122,7 @@ const Showing = () => {
                       fullWidth
                       id={style.detailBtn}
                       onClick={() => {
-                        navigate(`movie/${item.maPhim}`);
+                        navigate(`movie/${phim.maPhim}`);
                       }}
                     >
                       <Link>Xem Thêm</Link>
@@ -125,6 +158,9 @@ const Showing = () => {
           </>
         </Box>
       </Box>
+      {openTrailer && (
+        <Trailer movieID={movieID} setOpenTrailer={setOpenTrailer} />
+      )}
     </Container>
   );
 };
