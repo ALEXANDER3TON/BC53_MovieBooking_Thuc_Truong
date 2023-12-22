@@ -22,13 +22,12 @@ const LogIn = () => {
 
   const onSubmit = (values) => {
     dispatch(loginUser(values)).then((result) => {
-      
       if (result.payload.maLoaiNguoiDung === "KhachHang") {
         navigate(PATH.HOME);
       }
 
-      if(result.payload.maLoaiNguoiDung === "QuanTri") {
-        navigate()
+      if (result.payload.maLoaiNguoiDung === "QuanTri") {
+        navigate();
       }
     });
   };
@@ -38,7 +37,7 @@ const LogIn = () => {
         sx={{ fontSize: "36px", fontWeight: "600" }}
         textAlign={"center"}
       >
-        Log In
+        Đăng nhập
       </Typography>
       <Grid container justifyContent={"center"} alignItems={"center"}>
         <Grid item lg={6}>
