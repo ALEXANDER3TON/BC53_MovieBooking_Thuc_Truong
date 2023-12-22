@@ -10,17 +10,18 @@ const Chair = ({ chair }) => {
   const { chairBooking } = useSelector((state) => state.BookingPage);
   const dispatch = useDispatch();
   return (
-    <div
+    <Box
       className={cn(style.chair, {
         [style.booked]: chair.daDat,
         [style.booking]: chairBooking.find((e) => e.tenGhe === chair.tenGhe),
+        [style.vipChair]: chair.loaiGhe === "Vip"
       })}
       onClick={() => {
         dispatch(BookingPageAction.setChairBooking(chair));
       }}
     >
       {chair.tenGhe}
-    </div>
+    </Box>
   );
 };
 

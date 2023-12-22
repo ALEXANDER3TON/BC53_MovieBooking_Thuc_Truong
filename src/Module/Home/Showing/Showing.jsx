@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { getListMovieAPI } from "../../../APIs/movieAPI";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
-import style from './showing.module.scss'
-import cn from 'classnames'
-import "../../../Style/base.scss"
+import style from "./showing.module.scss";
+import cn from "classnames";
+import "../../../Style/base.scss";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import {
   Box,
   Button,
@@ -18,6 +19,8 @@ import {
   Typography,
 } from "@mui/material";
 import ReactPaginate from "react-paginate";
+import { green } from "@mui/material/colors";
+import Trailer from "../Trailer";
 
 const Showing = () => {
   const navigate = useNavigate();
@@ -30,29 +33,69 @@ const Showing = () => {
   // console.log(data)
 
   const [currentPage, setCurrentPage] = useState(0);
-  const moviePerPage = 5;
+  const moviePerPage = 8;
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
   };
   const pageCount = Math.ceil(data.length / moviePerPage);
   const offset = currentPage * moviePerPage;
   const currentPageMovie = data.slice(offset, offset + moviePerPage);
+
+  const [openTrailer, setOpenTrailer] = useState(false);
+  const [movieID, setMovieID] = useState("");
+  const handleOpenTrailer = (id) => {
+    setOpenTrailer(!openTrailer);
+    setMovieID(id);
+  };
   return (
     <Container>
-      <Box >
-        <Grid container spacing={3} sx={{ margin:"auto" }}>
-          {currentPageMovie.map((item) => {
+      <Box
+        sx={{
+          paddingTop: "90px",
+          position: "relative",
+        }}
+      >
+        <Grid container spacing={3}>
+          {currentPageMovie.map((phim) => {
+            console.log("item", phim);
             return (
               <Grid item>
-                <Card sx={{ maxWidth: "246px" }}>
+                <Card sx={{ maxWidth: "270px" }} className={style.cardItem}>
+                  <Box
+                    className={style.overlay}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      background: "rgba(0,0,0,0.5)",
+                    }}
+                  >
+                    <Button
+                      onClick={() => {
+                        handleOpenTrailer(phim.maPhim);
+                      }}
+                    >
+                      <PlayCircleOutlineIcon
+                        sx={{
+                          width: "3rem",
+                          height: "3rem",
+                          borderRadius: "50%",
+                          boxShadow:
+                            "0 0 6px 3px #fff, 0 0 10px 6px #f0f, 0 0 14px 9px #0ff",
+                          fontSize: "3rem",
+                          color: "#e700ff",
+                        }}
+                      />
+                    </Button>
+                  </Box>
                   <CardMedia
                     component="img"
-                    alt=""
+                    alt="..."
                     style={{
                       height: 270,
                       objectFit: "fill",
                     }}
-                    image={item.hinhAnh}
+                    image={phim.hinhAnh}
                   />
                   <CardContent>
                     <Typography
@@ -62,14 +105,14 @@ const Showing = () => {
                       className="truncate"
                       sx={{ height: 69 }}
                     >
-                      {item.tenPhim}
+                      {phim.tenPhim}
                     </Typography>
                     <Typography
                       variant="body2"
                       color="text.secondary"
                       className="truncate"
                     >
-                      {item.moTa}
+                      {phim.moTa}
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -77,11 +120,12 @@ const Showing = () => {
                       size="large"
                       variant="contained"
                       fullWidth
+                      id={style.detailBtn}
                       onClick={() => {
-                        navigate(`movie/${item.maPhim}`);
+                        navigate(`movie/${phim.maPhim}`);
                       }}
                     >
-                      Chi tiet
+                      <Link>Xem Thêm</Link>
                     </Button>
                   </CardActions>
                 </Card>
@@ -91,30 +135,32 @@ const Showing = () => {
         </Grid>
 
         <Box
-            sx={{
-              display: "flex",
-              justifyContent: "end",
-              alignItems: "center",
-              height:100
-            }}
-          >
-            <>
-              <ReactPaginate
-                previousLabel={<ArrowLeft sx={{fontSize:32}}/>}
-                nextLabel={<ArrowRight sx={{fontSize:32}}/>}
-                breakLabel={"..."}
-                pageCount={pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={handlePageChange}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-                className={cn(style.pagination,)}
-                activeLinkClassName="active"
-              />
-            </>
-          </Box>
+          sx={{
+            display: "flex",
+            justifyContent: "end",
+            alignItems: "center",
+          }}
+        >
+          <>
+            <ReactPaginate
+              previousLabel={<ArrowLeft sx={{ fontSize: 32 }} />}
+              nextLabel={<ArrowRight sx={{ fontSize: 32 }} />}
+              breakLabel={"..."}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageChange}
+              containerClassName={"pagination"}
+              activeClassName={"active"}
+              className={cn(style.pagination)}
+              activeLinkClassName="active"
+            />
+          </>
+        </Box>
       </Box>
+      {openTrailer && (
+        <Trailer movieID={movieID} setOpenTrailer={setOpenTrailer} />
+      )}
     </Container>
   );
 };

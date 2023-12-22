@@ -4,7 +4,7 @@ import { PATH } from "../../../Routes/path";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UserAction } from "../../../Store/LogInPagesSlice/slice";
-import style from "../header.module.scss"
+import style from "../header.module.scss";
 const UserButton = () => {
   const { user } = useSelector((state) => state.User);
 
@@ -16,27 +16,25 @@ const UserButton = () => {
   };
   return (
     <>
-      <div className={style.userAction}>
+      <Box className={style.userAction} >
         {user ? (
-          <Stack
-            direction={"row"}
-            justifyContent={"center"}
-            alignItems={"center"}
-          >
-            <Typography>Hello! {user.hoTen} </Typography>
-            <Button onClick={handleLogout} >
+          <Box sx={{ display: "flex", justifyContent:"space-evenly", alignItems:"center"}}>
+            <Typography sx={{textAlign:"center"}}>{user.hoTen} </Typography>
+            <Box onClick={handleLogout} className="btnStyle" sx={{margin:"0 0 12px 12px", width:"120px"}}>
               LOGOUT
-            </Button>
-          </Stack>
+            </Box>
+          </Box>
         ) : (
           <Stack direction={"row"}>
-            <Button onClick={() => navigate(PATH.REGISTER)}>Register</Button>
-            <Button onClick={() => navigate(PATH.LOG_IN)}>Log in</Button>
+            <Box onClick={() => navigate(PATH.REGISTER)} className="btnStyle">
+              Register
+            </Box>
+            <Box onClick={() => navigate(PATH.LOG_IN)} className="btnStyle" marginLeft={3}>
+              Log in
+            </Box>
           </Stack>
         )}
-      </div>
-      
-      
+      </Box>
     </>
   );
 };

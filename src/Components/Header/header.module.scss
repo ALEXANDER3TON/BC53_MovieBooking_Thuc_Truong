@@ -5,7 +5,8 @@
   top: 0;
   left: 0;
   z-index: 99;
-  background-color: rgb(255, 255, 255);
+  background-color: orange;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   .navbar {
     position: relative;
     display: flex;
@@ -15,6 +16,7 @@
     width: 100%;
   }
 }
+<<<<<<< HEAD
 //logo
 .logo {
   a {
@@ -24,18 +26,21 @@
     font-size: 26px;
   }
 }
+=======
+
+>>>>>>> ce208aa0c7c2a19733c07424bc3991523693d810
 //Menu
 .navMenu {
   .menu {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    margin: 0;
-    padding: 0;
     li {
-      padding-left: 21px;
+      list-style: none;
+      display: inline-block;
 
       a {
+<<<<<<< HEAD
         font-weight: 500;
         color: rgb(5, 5, 5);
       }
@@ -44,12 +49,49 @@
         // box-shadow: inset 0 -4px 21px -4px rgba(183, 78, 78, 0.621);
         a {
           color: rgb(217, 34, 34);
+=======
+        font-weight: 600;
+        color: #fc0707;
+        display: block;
+        position: relative;
+        line-height: 1.25rem;
+        perspective: none;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 9px 12px;
+
+        transition: all 0.3s ease;
+        z-index: 1;
+      }
+      a::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 0;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        
+        border-radius: 6px;
+        background: #ff0000;
+        box-shadow: 0 0 20px #ff0000;
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover {
+        a {
+          color: aliceblue;
+        }
+        a::before {
+          bottom: 0;
+          height: 100%;
+>>>>>>> ce208aa0c7c2a19733c07424bc3991523693d810
         }
       }
     }
   }
 }
 
+<<<<<<< HEAD
 //userAction
 .userAction {
   button {
@@ -71,15 +113,14 @@
   }
 }
 
+=======
+>>>>>>> ce208aa0c7c2a19733c07424bc3991523693d810
 .navMenuMobile {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .navMenu {
-    display: none;
-  }
-  .userAction {
+@media (max-width: 999px) {
+  .noneMobile {
     display: none;
   }
   .navMenuMobile {

@@ -7,7 +7,9 @@ import { useParams } from "react-router-dom";
 const Details = () => {
   const { movieID } = useParams();
   return (
-    <Box>
+    <Box sx={{
+      paddingTop:12
+    }}>
       <MovieProfiles movieID={movieID}/>
       <ShowTimes movieID={movieID}/>
     </Box>

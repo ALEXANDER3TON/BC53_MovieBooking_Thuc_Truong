@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, Box, TextField } from "@mui/material";
 
 const ChonRap = ({ cumRap, setRap }) => {
   const danhSachRap = [];
@@ -13,14 +13,15 @@ const ChonRap = ({ cumRap, setRap }) => {
     getOptionLabel: (option) => option.tenCumRap || "",
   };
   return (
-    <div>
+    <Box width={"24%"}>
       <Autocomplete
         {...defRap}
-        sx={{ width: 210 }}
-        renderInput={(params) => <TextField {...params} label="Chọn Rap Chiếu" variant="standard"/>}
+        renderInput={(params) => (
+          <TextField {...params} label="Chọn Rap Chiếu" variant="standard" />
+        )}
         onChange={(event, value) => setRap(value)}
       />
-    </div>
+    </Box>
   );
 };
 

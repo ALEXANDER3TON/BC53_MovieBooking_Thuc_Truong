@@ -13,9 +13,9 @@ import ChonSuat from "./ChonSuat";
 import { useQuery } from "@tanstack/react-query";
 import { getListMovieAPI } from "../../../APIs/movieAPI";
 import { getMovieShowTimesAPIs } from "../../../APIs/cinemaAPIs";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "./quickBooking.module.scss";
-
+import "../../../Style/base.scss";
 const QuickBooking = () => {
   const [pickedIDPhim, setPickedIDPhim] = useState("");
   const [rap, setRap] = useState("");
@@ -38,19 +38,33 @@ const QuickBooking = () => {
   const cumRap = heThongRap?.map((item) => item.cumRapChieu);
 
   return (
-    <Container>
-      <Box className={style.quickBooking}>
-        <Stack direction={"row"} justifyContent={"center"} divider={<Divider orientation="vertical" flexItem />} spacing={3} className={style.movieSelect}>
-          <ChonPhim ListMovie={ListMovie} setPickedPhim={setPickedIDPhim} />
-          <ChonRap cumRap={cumRap} setRap={setRap} />
-          <ChonSuat rap={rap} setSuat={setSuat} />
-          <Button onClick={() => navigate(`booking/${suat.maLichChieu}`)} sx={{
-            width:150
-          }}>
-            Dat Ve
-          </Button>
-        </Stack>
-      </Box>
+    <Container className={style.quickBooking}>
+      <Stack
+        direction={"row"}
+        divider={<Divider orientation="vertical" flexItem />}
+        spacing={1}
+        className={style.movieSelect}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ChonPhim ListMovie={ListMovie} setPickedPhim={setPickedIDPhim} />
+        <ChonRap cumRap={cumRap} setRap={setRap} />
+        <ChonSuat rap={rap} setSuat={setSuat} />
+        <div
+          onClick={() => {
+            suat
+              ? navigate(`booking/${suat.maLichChieu}`)
+              : alert("Vui lòng chọn suất");
+          }}
+          className="btnStyle"
+          id={style.bookingBtn}
+        >
+          Đặt vé
+        </div>
+      </Stack>
     </Container>
   );
 };

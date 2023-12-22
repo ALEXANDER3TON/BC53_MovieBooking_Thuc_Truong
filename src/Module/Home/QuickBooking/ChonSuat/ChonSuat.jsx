@@ -1,9 +1,8 @@
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, Box, TextField } from "@mui/material";
 import React from "react";
 import dayjs from "dayjs";
 
 const ChonSuat = ({ rap, setSuat }) => {
-  
   const suat = rap.lichChieuPhim || [];
   const defSuat = {
     options: suat,
@@ -15,16 +14,15 @@ const ChonSuat = ({ rap, setSuat }) => {
     },
   };
   return (
-    <div>
+    <Box width={"24%"}>
       <Autocomplete
         {...defSuat}
-        sx={{ width: 210 }}
         renderInput={(params) => (
-          <TextField {...params} label="Chọn Suất Chiếu" variant="standard"  />
+          <TextField {...params} label="Chọn Suất Chiếu" variant="standard" />
         )}
         onChange={(event, value) => setSuat(value)}
       />
-    </div>
+    </Box>
   );
 };
 
