@@ -85,8 +85,15 @@ const AddMovie = () => {
   }, [file]);
   return (
     <Box>
-      <Typography sx={{ marginTop: 3, textAlign: "center" }}>
-        Add Movie
+      <Typography
+        sx={{
+          textAlign: "center",
+          fontSize: "23px",
+          fontWeight: 700,
+          marginLeft: 36,
+        }}
+      >
+        THÊM PHIM MỚI
       </Typography>
       <Grid
         container
@@ -96,7 +103,7 @@ const AddMovie = () => {
       >
         <Grid item md={6}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={2} direction={"column"} textAlign={"center"}>
+            <Stack spacing={2} direction={"column"}>
               <TextField
                 label="Tên phim"
                 sx={{ width: 600 }}
@@ -137,14 +144,19 @@ const AddMovie = () => {
                 sx={{ width: 600 }}
                 {...register("danhGia")}
               />
+
               {!file && (
                 <Button
                   component="label"
                   variant="contained"
                   startIcon={<CloudUploadIcon />}
                 >
-                  Upload file
-                  <VisuallyHiddenInput type="file" {...register("hinhAnh")} />
+                  Tải ảnh lên
+                  <VisuallyHiddenInput
+                    style={{ textAlign: "center", marginLeft: 30 }}
+                    type="file"
+                    {...register("hinhAnh")}
+                  />
                 </Button>
               )}
 

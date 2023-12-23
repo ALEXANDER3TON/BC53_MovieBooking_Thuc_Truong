@@ -10,7 +10,7 @@ import { Stack } from "@mui/material";
 const AdminLayout = () => {
   return (
     <Box>
-      <Stack spacing={2}>
+      <Stack spacing={1}>
         <AdminHeader />
         <Stack spacing={2} direction={"row"}>
           <DashBoard />
