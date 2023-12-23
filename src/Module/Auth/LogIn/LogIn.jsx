@@ -28,7 +28,7 @@ const LogIn = () => {
       }
 
       if (result.payload.maLoaiNguoiDung === "QuanTri") {
-        navigate();
+        navigate(PATH.ADMIN);
       }
     });
   };

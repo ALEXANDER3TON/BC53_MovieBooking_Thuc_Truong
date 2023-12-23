@@ -1,9 +1,9 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
-import { PATH } from "../../../Routes/path";
+import {PATH} from "../../../../Routes/path";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { UserAction } from "../../../Store/LogInPagesSlice/slice";
+import { UserAction } from "../../../../Store/LogInPagesSlice/slice";
 import style from "../header.module.scss";
 const UserButton = () => {
   const { user } = useSelector((state) => state.User);

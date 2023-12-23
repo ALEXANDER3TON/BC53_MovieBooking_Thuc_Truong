@@ -1,5 +1,5 @@
 import React from "react";
-import "../../../Style/base.scss";
+import "../../../../Style/base.scss";
 import style from "../header.module.scss";
 import cn from "classnames";
 import { Box } from "@mui/material";

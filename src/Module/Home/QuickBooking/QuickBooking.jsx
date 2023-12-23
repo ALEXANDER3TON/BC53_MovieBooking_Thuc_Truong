@@ -20,7 +20,7 @@ const QuickBooking = () => {
   const [pickedIDPhim, setPickedIDPhim] = useState("");
   const [rap, setRap] = useState("");
   const [suat, setSuat] = useState("");
-  console.log("suat", suat);
+
   const navigate = useNavigate();
 
   const { data: ListMovie = {} } = useQuery({
