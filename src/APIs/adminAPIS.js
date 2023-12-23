@@ -29,3 +29,6 @@ export const deleteMovieAPI = async (movieID) => {
 };
 
 // Lấy danh sách phim (GET) (Lấy API từ movieAPI)
+
+// Cập nhật phim
+// export const updateMovieAPI = async;

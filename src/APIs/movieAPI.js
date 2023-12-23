@@ -30,5 +30,3 @@ export const getMovieDetailsAPI = async (movieID) => {
     return response.data.content;
   } catch (error) {}
 };
-
-

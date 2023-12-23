@@ -5,6 +5,7 @@ import {
   Table,
   TableBody,
   TableHead,
+  Typography,
 } from "@material-ui/core";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
@@ -20,7 +21,7 @@ const AdminMovieTable = () => {
   const handleDelete = async (movieID) => {
     try {
       await deleteMovieAPI(movieID);
-      queryClient.invalidateQueries({ queryKey: ["admin-movie-table"] });
+      //queryClient.invalidateQueries({ queryKey: ["admin-movie-table"] });
     } catch (err) {
       throw "Error!";
     }
@@ -28,6 +29,9 @@ const AdminMovieTable = () => {
 
   return (
     <Container>
+      <Typography style={{ textAlign: "center", fontWeight: 700 }}>
+        QUẢN LÝ PHIM
+      </Typography>
       <Table>
         <TableHead>
           <tr>

@@ -13,6 +13,7 @@ import AddMovie from "./Module/Admin/AdminMovie/AddMovie";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import AdminHeader from "./Components/Admin/AdminHeader/AdminHeader";
+import AdminMovieTable from "./Components/Admin/AdminMenu/AdminMovieTable";
 
 function App() {
   return (

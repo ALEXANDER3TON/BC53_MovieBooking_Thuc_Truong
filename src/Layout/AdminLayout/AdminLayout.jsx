@@ -15,7 +15,7 @@ const AdminLayout = () => {
         <AdminHeader />
         <Stack spacing={2} direction={"row"}>
           <DashBoard />
-          <AdminMovieTable />
+          {/* <AdminMovieTable /> */}
         </Stack>
         <AdminFooter />
       </Stack>

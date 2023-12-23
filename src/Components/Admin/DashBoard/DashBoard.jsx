@@ -19,6 +19,7 @@ import PermMedia from "@mui/icons-material/PermMedia";
 import Dns from "@mui/icons-material/Dns";
 import Public from "@mui/icons-material/Public";
 import AddMovie from "../../../Module/Admin/AdminMovie/AddMovie";
+import AdminMovieTable from "../AdminMenu/AdminMovieTable";
 
 const data = [
   { icon: <People />, label: "Quản lý người dùng" },
@@ -44,10 +45,14 @@ const FireNav = styled(List)({
 const DashBoard = () => {
   const [open, setOpen] = useState(true);
   const [showAddMovie, setShowAddMovie] = useState(false);
+  const [showMovieTable, setShowMovieTable] = useState(false);
 
   const handleAddMovieClick = (label) => {
     if (label === "Thêm phim mới") {
       setShowAddMovie(!showAddMovie);
+    }
+    if (label === "Quản lý phim") {
+      setShowMovieTable(!showMovieTable);
     }
   };
   return (
@@ -135,7 +140,7 @@ const DashBoard = () => {
           </FireNav>
         </Paper>
       </ThemeProvider>
-      {showAddMovie && <AddMovie />}{" "}
+      {showAddMovie && <AddMovie />} {showMovieTable && <AdminMovieTable />}{" "}
     </Box>
   );
 };
