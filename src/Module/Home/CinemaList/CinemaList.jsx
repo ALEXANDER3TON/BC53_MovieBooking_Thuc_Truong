@@ -39,7 +39,62 @@ const CinemaList = () => {
   console.log("data", data);
   return (
     <Box>
-      
+      <Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex" }}>
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          sx={{ borderRight: 1, borderColor: "divider" }}
+          value={cum}
+          onChange={(event, newValue) => {
+            setCum(newValue);
+          }}
+        >
+          {data.map((rap) => {
+            console.log("rap", rap);
+            return (
+              <Tab
+                label={<img src={rap.logo} alt="..." style={{ width: 80 }} />}
+                key={rap.maHeThongRap}
+                value={rap.maHeThongRap}
+                {...a11yProps(rap.maHeThongRap)}
+              ></Tab>
+            );
+          })}
+          ;
+        </Tabs>
+        {data.map((cumRap) => {
+          return (
+            <TabPanel
+              value={cum}
+              index={cumRap.maHeThongRap}
+              key={cumRap.maHeThongRap}
+            >
+              {cumRap.lstCumRap.map((cum) => {
+                return (
+                  <Tabs
+                    orientation="vertical"
+                    variant="scrollable"
+                    sx={{ borderRight: 1, borderColor: "divider" }}
+                    value={rap}
+                    onChange={(event, newValue) => {
+                      setRap(newValue);
+                    }}
+                  >
+                    <Tab
+                      label={
+                        <Box>
+                          <Typography>{cum.tenCumRap}</Typography>
+                          <Typography>{cum.diaChi}</Typography>
+                        </Box>
+                      }
+                    ></Tab>
+                  </Tabs>
+                );
+              })}
+            </TabPanel>
+          );
+        })}
+      </Box>
     </Box>
   );
 };
