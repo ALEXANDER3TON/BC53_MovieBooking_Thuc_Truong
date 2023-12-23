@@ -35,8 +35,8 @@ const AddMovie = () => {
   const { mutate: handleAddMovie } = useMutation({
     mutationFn: (payload) => addMovieAPI(payload),
     onSuccess: () => {
-      // call API get list
-      // queryClient.invalidateQueries({ queryKey: ["list-movie-admin"] });
+      // Sử dụng QueryClient để fetch lại data khi thêm
+      queryClient.invalidateQueries({ queryKey: ["admin-movie-table"] });
     },
   });
 

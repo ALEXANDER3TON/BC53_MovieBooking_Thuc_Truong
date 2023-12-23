@@ -1,6 +1,7 @@
+import { CURRENT_USER, GROUP_CODE } from "../constant";
 import fetcher from "./fetcher";
 
-// Add Movie
+// Thêm phim
 export const addMovieAPI = async (payload) => {
   try {
     const response = await fetcher.post(
@@ -13,12 +14,18 @@ export const addMovieAPI = async (payload) => {
   }
 };
 
-// Delete Movie
-export const deleteMovieAPI = async (payload) => {
+// Xoá Phim
+export const deleteMovieAPI = async (movieID) => {
   try {
-    const response = await fetcher.post(payload);
-    //return response.data.content;
+    const response = await fetcher.delete("/QuanLyPhim/XoaPhim", {
+      params: {
+        maPhim: movieID,
+      },
+    });
+    return response.data.content;
   } catch (error) {
     throw "Error!!";
   }
 };
+
+// Lấy danh sách phim (GET) (Lấy API từ movieAPI)
