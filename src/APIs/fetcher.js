@@ -10,7 +10,7 @@ const fetcher = axios.create({
 });
 
 //Authorization
-const fetcherAuthorization = fetcher.interceptors.request.use((config) => {
+fetcher.interceptors.request.use((config) => {
   const user = JSON.parse(localStorage.getItem(CURRENT_USER));
   if (user) {
     config.headers["Authorization"] = `Bearer ${user.accessToken}`;

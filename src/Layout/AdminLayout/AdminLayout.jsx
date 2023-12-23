@@ -7,6 +7,7 @@ import DashBoard from "../../Components/Admin/DashBoard/DashBoard";
 import AdminFooter from "../../Components/Admin/AdminFooter/AdminFooter";
 import { Stack } from "@mui/material";
 import AdminMovieTable from "../../Components/Admin/AdminMenu/AdminMovieTable";
+import AdminUserTable from "../../Components/Admin/AdminUserTable";
 
 const AdminLayout = () => {
   return (
@@ -16,6 +17,7 @@ const AdminLayout = () => {
         <Stack spacing={2} direction={"row"}>
           <DashBoard />
           {/* <AdminMovieTable /> */}
+          {/* <AdminUserTable /> */}
         </Stack>
         <AdminFooter />
       </Stack>

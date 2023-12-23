@@ -31,4 +31,82 @@ export const deleteMovieAPI = async (movieID) => {
 // Lấy danh sách phim (GET) (Lấy API từ movieAPI)
 
 // Cập nhật phim
-// export const updateMovieAPI = async;
+export const updateMovieAPI = async (formData) => {
+  try {
+    const response = await fetcher.post(
+      "/QuanLyPhim/CapNhatPhimUpload",
+      formData
+    );
+    return response.data.content;
+  } catch (err) {
+    throw "Error!!";
+  }
+};
+
+// Lấy danh sách người dùng
+export const getListUser = async () => {
+  try {
+    const response = await fetcher.get(
+      "/QuanLyNguoiDung/LayDanhSachNguoiDung",
+      {
+        params: {
+          maNhom: GROUP_CODE,
+        },
+      }
+    );
+    return response.data.content;
+  } catch (err) {
+    throw "Error!!";
+  }
+};
+
+// Xoá người dùng
+export const deleteUserAPI = async (userID) => {
+  try {
+    const response = await fetcher.delete("/QuanLyNguoiDung/XoaNguoiDung", {
+      params: {
+        taiKhoan: userID,
+      },
+    });
+    return response.data.content;
+  } catch (error) {
+    throw "Error!!";
+  }
+};
+// Lấy danh sách loại người dùng
+export const userType = async () => {
+  try {
+    const response = await fetcher.get(
+      "/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung"
+    );
+    return response.data.content;
+  } catch (err) {
+    throw "Error!!";
+  }
+};
+
+// Quản lý người dùng
+export const addUser = async (formData) => {
+  try {
+    const response = await fetcher.post(
+      "/QuanLyNguoiDung/ThemNguoiDung",
+      formData
+    );
+    return response.data.content;
+  } catch (err) {
+    throw "Error!!";
+  }
+};
+
+// Cập nhật người dùng
+export const updateUser = async (formData) => {
+  try {
+    const response = await fetcher.post(
+      "/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+      formData
+    );
+    return response.data.content;
+  } catch (err) {
+    throw "Error!!";
+  }
+};

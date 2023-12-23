@@ -20,6 +20,7 @@ import Dns from "@mui/icons-material/Dns";
 import Public from "@mui/icons-material/Public";
 import AddMovie from "../../../Module/Admin/AdminMovie/AddMovie";
 import AdminMovieTable from "../AdminMenu/AdminMovieTable";
+import AdminUserTable from "../AdminUserTable/AdminUserTable";
 
 const data = [
   { icon: <People />, label: "Quản lý người dùng" },
@@ -46,6 +47,7 @@ const DashBoard = () => {
   const [open, setOpen] = useState(true);
   const [showAddMovie, setShowAddMovie] = useState(false);
   const [showMovieTable, setShowMovieTable] = useState(false);
+  const [showUserTable, setShowUserTable] = useState(false);
 
   const handleAddMovieClick = (label) => {
     if (label === "Thêm phim mới") {
@@ -53,6 +55,9 @@ const DashBoard = () => {
     }
     if (label === "Quản lý phim") {
       setShowMovieTable(!showMovieTable);
+    }
+    if (label === "Quản lý người dùng") {
+      setShowUserTable(!showUserTable);
     }
   };
   return (
@@ -140,7 +145,12 @@ const DashBoard = () => {
           </FireNav>
         </Paper>
       </ThemeProvider>
-      {showAddMovie && <AddMovie />} {showMovieTable && <AdminMovieTable />}{" "}
+      {showAddMovie && <AddMovie />}
+      {""}
+      {showMovieTable && <AdminMovieTable />}
+      {""}
+      {showUserTable && <AdminUserTable />}
+      {""}
     </Box>
   );
 };

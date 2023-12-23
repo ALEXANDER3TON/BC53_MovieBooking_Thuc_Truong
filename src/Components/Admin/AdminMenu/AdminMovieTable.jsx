@@ -21,7 +21,6 @@ const AdminMovieTable = () => {
   const handleDelete = async (movieID) => {
     try {
       await deleteMovieAPI(movieID);
-      //queryClient.invalidateQueries({ queryKey: ["admin-movie-table"] });
     } catch (err) {
       throw "Error!";
     }
