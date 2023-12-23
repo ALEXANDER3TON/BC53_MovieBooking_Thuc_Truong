@@ -12,6 +12,7 @@ import AdminLayout from "./Layout/AdminLayout/AdminLayout";
 import AddMovie from "./Module/Admin/AdminMovie/AddMovie";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import AdminHeader from "./Components/Admin/AdminHeader/AdminHeader";
 
 function App() {
   return (
@@ -25,9 +26,7 @@ function App() {
             <Route path={PATH.REGISTER} element={<Register />} />
             <Route path={PATH.LOG_IN} element={<LogIn />} />
           </Route>
-          <Route path={PATH.ADMIN} element={<AdminLayout />}>
-            <Route index element={<AddMovie />} />
-          </Route>
+          <Route path={PATH.ADMIN} element={<AdminLayout />}></Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
