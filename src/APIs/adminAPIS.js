@@ -13,9 +13,10 @@ export const addMovieAPI = async (payload) => {
   }
 };
 
-export const deleteMovie = async (movieID) => {
+// Delete Movie
+export const deleteMovieAPI = async (payload) => {
   try {
-    const response = await fetcher.post(movieID);
+    const response = await fetcher.post(payload);
     //return response.data.content;
   } catch (error) {
     throw "Error!!";
