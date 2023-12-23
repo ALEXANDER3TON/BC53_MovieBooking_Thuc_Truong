@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import "../../Style/base.scss";
-
+import React from "react";
+import "../../../Style/base.scss";
 import Logo from "./Logo";
-import MenuPages from "./MenuPages";
-
 import style from "./header.module.scss";
 import cn from "classnames";
-import "../../Style/base.scss";
-import UserButton from "./UserButton";
+import MenuPages from "./MenuPages";
+import UserButton from "./UserButton/UserButton";
 import MobileMenu from "./MobileMenu";
+
 import { Box } from "@mui/material";
 const Header = () => {
   return (
@@ -16,7 +14,11 @@ const Header = () => {
       <nav className="navbar container">
         <Logo />
         <Box className={style.noneMobile} width={"72%"}>
-          <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+          <Box
+            display={"flex"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+          >
             <MenuPages />
             <UserButton />
           </Box>

@@ -19,7 +19,7 @@ import {
   Typography,
 } from "@mui/material";
 import ReactPaginate from "react-paginate";
-import { green } from "@mui/material/colors";
+
 import Trailer from "../Trailer";
 
 const Showing = () => {
@@ -57,9 +57,9 @@ const Showing = () => {
       >
         <Grid container spacing={3}>
           {currentPageMovie.map((phim) => {
-            console.log("item", phim);
+            
             return (
-              <Grid item>
+              <Grid item key={phim.maPhim}>
                 <Card sx={{ maxWidth: "270px" }} className={style.cardItem}>
                   <Box
                     className={style.overlay}

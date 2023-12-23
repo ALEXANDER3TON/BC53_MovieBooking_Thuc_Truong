@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "../header.module.scss";
-import logo from "../../../constant/logo.png";
+import logo from "../../../../constant/logo.png";
 import { Box, CardMedia, Typography } from "@mui/material";
 const Logo = () => {
   return (

@@ -15,6 +15,7 @@ export const getListMovieAPI = async () => {
         maNhom: GROUP_CODE,
       },
     });
+
     return response.data.content;
   } catch (error) {}
 };
@@ -29,3 +30,5 @@ export const getMovieDetailsAPI = async (movieID) => {
     return response.data.content;
   } catch (error) {}
 };
+
+

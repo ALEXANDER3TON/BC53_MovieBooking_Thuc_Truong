@@ -15,7 +15,7 @@ import style from "../header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import UserButton from "../UserButton";
+import UserButton from "../UserButton/UserButton";
 
 const MobileMenu = () => {
   const { user } = useSelector((state) => state.User);
@@ -27,7 +27,7 @@ const MobileMenu = () => {
     menu: false,
   });
 
-  const anchor = "menu";
+  const anchor = "left";
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&

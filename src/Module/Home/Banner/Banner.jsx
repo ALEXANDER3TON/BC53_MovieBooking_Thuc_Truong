@@ -16,7 +16,7 @@ import Trailer from "../Trailer";
 const Banner = () => {
   const [openTrailer, setOpenTrailer] = useState(false);
   const [movieID, setMovieID] = useState("");
-  console.log('MovieID', movieID)
+  
   const handleOpenTrailer = (id) => {
     setOpenTrailer(!openTrailer);
     setMovieID(id)
@@ -36,7 +36,7 @@ const Banner = () => {
       <Carousel showArrows={true} showThumbs={false} infiniteLoop={true} showStatus={false}>
         {data.map((item) => {
           return (
-            <Box >
+            <Box key={item.maBanner}>
               <Button sx={{display:"inline-block"}} className={style.playBtn}
               onClick={() => {
                 handleOpenTrailer(item.maPhim);
