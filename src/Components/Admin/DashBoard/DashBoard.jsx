@@ -51,7 +51,7 @@ const DashBoard = () => {
     }
   };
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", height: 600 }}>
       <ThemeProvider
         theme={createTheme({
           components: {
@@ -70,18 +70,6 @@ const DashBoard = () => {
       >
         <Paper elevation={0} sx={{ maxWidth: 256 }}>
           <FireNav component="nav" disablePadding>
-            <ListItemButton component="a" href="#customized-list">
-              <ListItemIcon sx={{ fontSize: 20 }}>🔥</ListItemIcon>
-              <ListItemText
-                sx={{ my: 0 }}
-                primary="Cinema"
-                primaryTypographyProps={{
-                  fontSize: 20,
-                  fontWeight: "medium",
-                  letterSpacing: 0,
-                }}
-              />
-            </ListItemButton>
             <Box
               sx={{
                 bgcolor: open ? "rgba(71, 98, 130, 0.2)" : null,
@@ -99,14 +87,14 @@ const DashBoard = () => {
                 }}
               >
                 <ListItemText
-                  primary="Menu Admin"
+                  primary="QUẢN TRỊ"
                   primaryTypographyProps={{
                     fontSize: 15,
                     fontWeight: "medium",
                     lineHeight: "20px",
                     mb: "2px",
                   }}
-                  secondary="Authentication, Firestore Database, Realtime Database, Storage, Hosting, Functions, and Machine Learning"
+                  secondary="Quản lý người dùng, quản lý phim,..."
                   secondaryTypographyProps={{
                     noWrap: true,
                     fontSize: 12,

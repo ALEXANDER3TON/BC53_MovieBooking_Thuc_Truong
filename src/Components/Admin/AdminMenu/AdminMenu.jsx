@@ -1,7 +1,7 @@
 import React from "react";
 
 const AdminMenu = () => {
-  return <div>AdminMenu</div>;
+  return <div></div>;
 };
 
 export default AdminMenu;

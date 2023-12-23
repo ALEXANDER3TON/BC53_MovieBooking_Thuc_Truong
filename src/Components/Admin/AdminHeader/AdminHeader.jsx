@@ -173,7 +173,7 @@ const AdminHeader = () => {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            Cinema Admin
+            ADMIN
           </Typography>
           <Search>
             <SearchIconWrapper>
