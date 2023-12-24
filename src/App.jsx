@@ -9,13 +9,16 @@ import BookingPagse from "./Module/BookingPages/BookingPagse";
 import Register from "./Module/Auth/Register";
 import LogIn from "./Module/Auth/LogIn";
 import AdminLayout from "./Layout/AdminLayout/AdminLayout";
-import AddMovie from "./Module/Admin/AdminMovie/AddMovie";
+
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import AdminHeader from "./Components/Admin/AdminHeader/AdminHeader";
+
+import { UserProvider } from "./contexts/useContext/useContext";
+import AddUser from "./Module/Admin/AdminMovie/AddUser/AddUser";
 
 function App() {
   return (
+    // <UserProvider>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <BrowserRouter>
         <Routes>
@@ -26,11 +29,14 @@ function App() {
             <Route path={PATH.REGISTER} element={<Register />} />
             <Route path={PATH.LOG_IN} element={<LogIn />} />
           </Route>
-          <Route path={PATH.ADMIN} element={<AdminLayout />}></Route>
+          <Route path={PATH.ADMIN} element={<AdminLayout />}>
+            {/* <Route index element={<AddUser />} /> */}
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </LocalizationProvider>
+    // </UserProvider>
   );
 }
 

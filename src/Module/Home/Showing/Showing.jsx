@@ -59,7 +59,6 @@ const Showing = () => {
       >
         <Grid container spacing={3} padding={3}>
           {currentPageMovie.map((phim) => {
-            
             return (
               <Grid item key={phim.maPhim} xs={3} >
                 <Card  className={style.cardItem}>

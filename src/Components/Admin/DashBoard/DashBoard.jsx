@@ -1,29 +1,33 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { styled, ThemeProvider, createTheme } from "@mui/material/styles";
-import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import ArrowRight from "@mui/icons-material/ArrowRight";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
-import Home from "@mui/icons-material/Home";
-import Settings from "@mui/icons-material/Settings";
 import People from "@mui/icons-material/People";
-import PermMedia from "@mui/icons-material/PermMedia";
 import Dns from "@mui/icons-material/Dns";
 import Public from "@mui/icons-material/Public";
 import AddMovie from "../../../Module/Admin/AdminMovie/AddMovie";
+import AdminMovieTable from "../AdminMenu/AdminMovieTable";
+import AdminUserTable from "../AdminUserTable/AdminUserTable";
 
+import {
+  ContactEmergency,
+  GroupAdd,
+  LocalMovies,
+  TheaterComedy,
+} from "@mui/icons-material";
+import { Navigate, useNavigate } from "react-router-dom";
+import { PATH } from "../../../Routes/path";
+import AddUser from "../../../Module/Admin/AdminMovie/AddUser/AddUser";
 const data = [
   { icon: <People />, label: "Quản lý người dùng" },
   { icon: <Dns />, label: "Quản lý phim" },
-  { icon: <PermMedia />, label: "Thêm phim mới" },
+  { icon: <LocalMovies />, label: "Thêm phim" },
+  { icon: <GroupAdd />, label: "Thêm người dùng" },
   { icon: <Public />, label: "Hosting" },
 ];
 
@@ -42,12 +46,24 @@ const FireNav = styled(List)({
 });
 
 const DashBoard = () => {
+  const [selectedComponent, setSelectedComponent] = useState("Quản lý phim");
   const [open, setOpen] = useState(true);
-  const [showAddMovie, setShowAddMovie] = useState(false);
 
   const handleAddMovieClick = (label) => {
-    if (label === "Thêm phim mới") {
-      setShowAddMovie(!showAddMovie);
+    if (label === "Thêm phim") {
+      setSelectedComponent("Thêm phim");
+    }
+    if (label === "Quản lý phim") {
+      setSelectedComponent("Quản lý phim");
+    }
+    if (label === "Quản lý người dùng") {
+      setSelectedComponent("Quản lý người dùng");
+    }
+    if (label === "Thêm người dùng") {
+      setSelectedComponent("Thêm người dùng");
+    }
+    if (label === "Hosting") {
+      setSelectedComponent("Hosting");
     }
   };
   return (
@@ -135,7 +151,11 @@ const DashBoard = () => {
           </FireNav>
         </Paper>
       </ThemeProvider>
-      {showAddMovie && <AddMovie />}{" "}
+      {selectedComponent === "Thêm phim" && <AddMovie />}
+      {selectedComponent === "Quản lý phim" && <AdminMovieTable />}
+      {selectedComponent === "Quản lý người dùng" && <AdminUserTable />}
+      {selectedComponent === "Thêm người dùng" && <AddUser />}
+      {selectedComponent === "Hosting" && <Navigate to={PATH.HOME} />}
     </Box>
   );
 };

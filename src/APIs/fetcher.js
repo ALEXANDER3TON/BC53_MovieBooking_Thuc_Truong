@@ -9,11 +9,14 @@ const fetcher = axios.create({
   },
 });
 
+//Authorization
 fetcher.interceptors.request.use((config) => {
   const user = JSON.parse(localStorage.getItem(CURRENT_USER));
   if (user) {
     config.headers["Authorization"] = `Bearer ${user.accessToken}`;
+    // config.headers.Authorization = user.accessToken;
   }
+  console.log(config);
 
   return config;
 });
