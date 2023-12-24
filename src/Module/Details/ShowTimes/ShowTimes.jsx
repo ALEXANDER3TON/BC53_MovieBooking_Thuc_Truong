@@ -67,7 +67,7 @@ const ShowTimes = ({ movieID }) => {
   }, [cinemaSystem]);
   return (
     <Container>
-      <Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex" }}>
+      <Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex" , padding:3, height:390, overflow:"scroll"}}>
         <Tabs
           orientation="vertical"
           variant="scrollable"
@@ -103,7 +103,7 @@ const ShowTimes = ({ movieID }) => {
                     </Typography>
                     <Stack spacing={2} direction={"row"}>
                       {rap.lichChieuPhim.map((suat) => {
-                        console.log("suat", suat);
+                        
                         const times = dayjs(suat.ngayChieuGioChieu).format(
                           "DD/MM/YYYY ~ hh:mm"
                         );

@@ -5,14 +5,18 @@ import { getMovieDetailsAPI } from "../../../APIs/movieAPI";
 import { Box, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import "../../../Style/base.scss";
+import ReactPlayer from "react-player";
+
+
 const Trailer = ({ movieID, setOpenTrailer }) => {
-  console.log("movieID", movieID);
+  
+  
   const { data = {} } = useQuery({
     queryKey: ["MOIVE_TRAILER", movieID],
     queryFn: () => getMovieDetailsAPI(movieID),
     enabled: !!movieID,
   });
-  console.log('data', data)
+ 
   return (
     <Box
       sx={{
@@ -40,7 +44,7 @@ const Trailer = ({ movieID, setOpenTrailer }) => {
           width: "50%",
         }}
       >
-        <iframe width="560" height="315" src={data.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <ReactPlayer url={data.trailer} width={720} height={450}/>
       </Box>
     </Box>
   );

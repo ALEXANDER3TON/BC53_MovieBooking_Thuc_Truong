@@ -32,7 +32,7 @@ const Banner = () => {
   });
 
   return (
-    <div className={style.banner}>
+    <Box className={style.banner}>
       <Carousel showArrows={true} showThumbs={false} infiniteLoop={true} showStatus={false}>
         {data.map((item) => {
           return (
@@ -58,7 +58,7 @@ const Banner = () => {
         })}
       </Carousel>
       {openTrailer && <Trailer movieID={movieID} setOpenTrailer={setOpenTrailer}/>}
-    </div>
+    </Box>
   );
 };
 
