@@ -19,7 +19,7 @@ const CumRap = ({
     }
   }, [cum]);
   return (
-    <Box>
+    <Box width={"100%"} height={630} sx={{overflowY:"scroll"}}>
       {lichChieuTheoRap.map((item) => {
         return (
           <TabPanel
@@ -30,7 +30,7 @@ const CumRap = ({
             <Tabs
               orientation="vertical"
               variant="scrollable"
-              sx={{ borderRight: 1, borderColor: "divider" }}
+              sx={{ borderRight: 1, borderColor: "divider"}}
               value={rap}
               onChange={(event, newValue) => {
                 setRap(newValue);
@@ -39,6 +39,9 @@ const CumRap = ({
               {item.lstCumRap.map((item) => {
                 return (
                   <Tab
+                  sx={{
+                    height:120
+                  }}
                     label={
                       <Box>
                         <Typography sx={{ color: "red" }}>

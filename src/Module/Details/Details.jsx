@@ -8,10 +8,13 @@ const Details = () => {
   const { movieID } = useParams();
   return (
     <Box sx={{
-      paddingTop:12
+      paddingTop:9,
+      background:"#37474f"
     }}>
+      <Container sx={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
       <MovieProfiles movieID={movieID}/>
       <ShowTimes movieID={movieID}/>
+      </Container>
     </Box>
   );
 };

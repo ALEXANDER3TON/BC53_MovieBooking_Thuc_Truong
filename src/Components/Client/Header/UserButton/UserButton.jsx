@@ -16,7 +16,7 @@ const UserButton = () => {
   };
   return (
     <>
-      <Box className={style.userAction} >
+      <Box className={style.userAction} sx={{paddingBottom:1}}>
         {user ? (
           <Box sx={{ display: "flex", justifyContent:"space-evenly", alignItems:"center"}}>
             <Typography sx={{textAlign:"center"}}>{user.hoTen} </Typography>

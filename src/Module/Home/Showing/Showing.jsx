@@ -51,16 +51,18 @@ const Showing = () => {
     <Container>
       <Box
         sx={{
-          paddingTop: "90px",
+          marginTop: "90px",
           position: "relative",
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+          borderRadius: 3
         }}
       >
-        <Grid container spacing={3}>
+        <Grid container spacing={3} padding={3}>
           {currentPageMovie.map((phim) => {
             
             return (
-              <Grid item key={phim.maPhim}>
-                <Card sx={{ maxWidth: "270px" }} className={style.cardItem}>
+              <Grid item key={phim.maPhim} xs={3} >
+                <Card  className={style.cardItem}>
                   <Box
                     className={style.overlay}
                     sx={{
@@ -137,7 +139,7 @@ const Showing = () => {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "end",
+            justifyContent: "center",
             alignItems: "center",
           }}
         >

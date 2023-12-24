@@ -28,7 +28,7 @@ const BookingPagse = () => {
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
-            height: "669px",
+            height: "100%",
           }}
         />
       ) : (

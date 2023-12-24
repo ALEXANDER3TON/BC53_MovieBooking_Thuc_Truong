@@ -44,49 +44,59 @@ const CinemaList = () => {
     queryKey: ["LIST_CINEMA"],
     queryFn: getListCinemaAPI,
   });
-  let newListCumRap = []
+  let newListCumRap = [];
   useEffect(() => {
     if (lichChieuTheoRap.length > 0) {
       setCum(lichChieuTheoRap[0].maHeThongRap);
-        lichChieuTheoRap.map((item) => {
-          item.lstCumRap.map((item) => {
-            newListCumRap.push(item);
-          })
+      lichChieuTheoRap.map((item) => {
+        item.lstCumRap.map((item) => {
+          newListCumRap.push(item);
         });
-        if (newListCumRap.length > 0) {
-          setRap(newListCumRap[0].maCumRap);
-        }
+      });
+      if (newListCumRap.length > 0) {
+        setRap(newListCumRap[0].maCumRap);
+      }
     }
   }, [lichChieuTheoRap]);
 
   return (
-    <Container>
-      <Grid container columns={12}>
-        <Grid item sx={2}>
-          <HeThong
-            lichChieuTheoRap={lichChieuTheoRap}
-            cum={cum}
-            setCum={setCum}
-          />
+    <Container height={100}>
+      <Box
+        width={"100%"}
+        sx={{
+          marginY: 3,
+          padding: 3,
+          borderRadius:3,
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+        }}
+      >
+        <Grid container>
+          <Grid item xs={1}>
+            <HeThong
+              lichChieuTheoRap={lichChieuTheoRap}
+              cum={cum}
+              setCum={setCum}
+            />
+          </Grid>
+          <Grid item xs={5}>
+            <CumRap
+              TabPanel={TabPanel}
+              lichChieuTheoRap={lichChieuTheoRap}
+              cum={cum}
+              rap={rap}
+              setRap={setRap}
+              newListCumRap={newListCumRap}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <FilmLichChieu
+              lichChieuTheoRap={lichChieuTheoRap}
+              rap={rap}
+              TabPanel={TabPanel}
+            />
+          </Grid>
         </Grid>
-        <Grid item sx={3}>
-          <CumRap
-            TabPanel={TabPanel}
-            lichChieuTheoRap={lichChieuTheoRap}
-            cum={cum}
-            rap={rap}
-            setRap={setRap}
-            newListCumRap={newListCumRap}
-          />
-        </Grid>
-        <Grid item sx={7}>
-          <FilmLichChieu
-            lichChieuTheoRap={lichChieuTheoRap}
-            rap={rap}
-            TabPanel={TabPanel}
-          />
-        </Grid>
-      </Grid>
+      </Box>
     </Container>
   );
 };

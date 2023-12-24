@@ -4,16 +4,16 @@ import Showing from "./Showing/Showing";
 import QuickBooking from "./QuickBooking";
 import { Box, Container } from "@mui/material";
 import CinemaList from "./CinemaList/CinemaList";
-
+import PhoneApp from "./PhoneApp";
 
 const HomeModule = () => {
-  
   return (
-    <Box >
+    <Box>
       <Banner />
       <QuickBooking />
       <Showing />
-      <CinemaList/>
+      <CinemaList />
+      <PhoneApp/>
     </Box>
   );
 };

@@ -1,15 +1,19 @@
 import { LoadingButton } from "@mui/lab";
-import { Container, Grid, Stack, TextField, Typography } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
+import {
+  Box,
+  Container,
+  Grid,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
-
 import { useNavigate } from "react-router-dom";
 import { PATH } from "../../../Routes/path";
-
 import { loginUser } from "../../../Store/LogInPagesSlice/slice";
 import { useDispatch } from "react-redux";
-
+import "../../../Style/base.scss";
 const LogIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,7 +22,6 @@ const LogIn = () => {
       taiKhoan: "",
       matKhau: "",
     },
-    
   });
 
   const onSubmit = (values) => {
@@ -34,34 +37,45 @@ const LogIn = () => {
   };
   return (
     <Container>
-      <Typography
-        sx={{ fontSize: "36px", fontWeight: "600" }}
-        textAlign={"center"}
-      >
-        Đăng nhập
-      </Typography>
-      <Grid container justifyContent={"center"} alignItems={"center"}>
-        <Grid item lg={6}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={3}>
-              <TextField
-                label="Tài Khoản"
-                fullWidth
-                {...register("taiKhoan")}
-              />
-              <TextField
-                label="Mật Khẩu"
-                type="password"
-                fullWidth
-                {...register("matKhau")}
-              />
-              <LoadingButton type="submit" variant="contained">
-                Đăng Nhập
-              </LoadingButton>
-            </Stack>
-          </form>
+      <Box padding={12}>
+        <Typography
+          sx={{ fontSize: "36px", fontWeight: "600" }}
+          textAlign={"center"}
+        >
+          Đăng nhập
+        </Typography>
+        <Grid container justifyContent={"center"} alignItems={"center"}>
+          <Grid item lg={6} xs={10}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Stack
+                spacing={3}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
+                <TextField
+                  label="Tài Khoản"
+                  fullWidth
+                  {...register("taiKhoan")}
+                />
+                <TextField
+                  label="Mật Khẩu"
+                  type="password"
+                  fullWidth
+                  {...register("matKhau")}
+                />
+                <LoadingButton
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  color="warning"
+                >
+                  Đăng Nhập
+                </LoadingButton>
+              </Stack>
+            </form>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
     </Container>
   );
 };

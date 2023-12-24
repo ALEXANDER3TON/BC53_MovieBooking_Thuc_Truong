@@ -3,7 +3,7 @@ import React from "react";
 
 const HeThong = ({ lichChieuTheoRap, cum, setCum }) => {
   return (
-    <Box>
+    <Box >
       <Tabs
         orientation="vertical"
         variant="scrollable"
