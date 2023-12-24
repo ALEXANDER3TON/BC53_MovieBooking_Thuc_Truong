@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { getListCinemaAPI } from "../../../APIs/cinemaAPIs";
 import "../../../Style/base.scss";
+import style from "./cinema.module.scss"
 import {
   Box,
   Button,
@@ -60,7 +61,7 @@ const CinemaList = () => {
   }, [lichChieuTheoRap]);
 
   return (
-    <Container height={100}>
+    <Container height={100} className={style.cinema}>
       <Box
         width={"100%"}
         sx={{

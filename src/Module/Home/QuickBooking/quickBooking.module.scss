@@ -19,7 +19,11 @@
   }
 }
 
-
+@media (max-width: 991px) { 
+  .quickBooking {
+    visibility: hidden;
+  }
+}
 
 
 #bookingBtn {
