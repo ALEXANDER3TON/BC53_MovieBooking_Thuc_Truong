@@ -9,7 +9,7 @@ import CinemaList from "./CinemaList/CinemaList";
 const HomeModule = () => {
   
   return (
-    <Box>
+    <Box >
       <Banner />
       <QuickBooking />
       <Showing />
