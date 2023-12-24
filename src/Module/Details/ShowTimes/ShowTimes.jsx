@@ -83,7 +83,6 @@ const ShowTimes = ({ movieID }) => {
                 label={<img src={rap.logo} alt="..." style={{ width: 80 }} />}
                 key={rap.maHeThongRap}
                 value={rap.maHeThongRap}
-                {...a11yProps(rap.maHeThongRap)}
               ></Tab>
             );
           })}
@@ -104,7 +103,7 @@ const ShowTimes = ({ movieID }) => {
                     </Typography>
                     <Stack spacing={2} direction={"row"}>
                       {rap.lichChieuPhim.map((suat) => {
-                        console.log('suat', suat)
+                        console.log("suat", suat);
                         const times = dayjs(suat.ngayChieuGioChieu).format(
                           "DD/MM/YYYY ~ hh:mm"
                         );
