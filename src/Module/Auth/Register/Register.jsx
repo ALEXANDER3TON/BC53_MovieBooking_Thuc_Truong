@@ -77,7 +77,7 @@ const Register = () => {
     const result = handleRegister(values);
   };
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{padding:18}}>
       <Typography
         sx={{ fontSize: "36px", fontWeight: "600" }}
         textAlign={"center"}
