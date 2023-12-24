@@ -15,6 +15,7 @@ export const UserProvider = ({ children }) => {
     setCurrentUser(user);
     localStorage.setItem(CURRENT_USER, JSON.stringify(user));
   };
+  console.log("CURRENT_USER: ", CURRENT_USER);
 
   const handleLogout = () => {
     setCurrentUser(null);

@@ -8,10 +8,41 @@ import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import dayjs from "dayjs";
 import { addMovieAPI } from "../../../../APIs/adminAPIS";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+// Thư viện Yup để xử lý ERROR
+const schemaAddMovie = yup.object({
+  tenPhim: yup
+    .string()
+    .required("Vui lòng nhập tên phim")
+
+    .max(200, "Không đượt vượt quá 200 ký tự"),
+  trailer: yup
+    .string()
+    .required("Vui lòng nhập trailer phim")
+    .max(200, "Không đượt vượt quá 200 ký tự"),
+  moTa: yup
+    .string()
+    .required("Vui lòng nhập mô tả phim")
+    .max(200, "Không đượt vượt quá 200 ký tự"),
+  ngayKhoiChieu: yup.string().required("Ngày khởi chiếu không được để trống"),
+  danhGia: yup
+    .string()
+    .required("Vui lòng nhập đánh giá")
+    .matches(/^(10|[0-9])$/, "Phim phải được đánh giá trên thang điểm 10"),
+});
 
 const AddMovie = () => {
   const queryClient = useQueryClient();
-  const { handleSubmit, register, control, setValue, watch } = useForm({
+  const {
+    handleSubmit,
+    register,
+    control,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       tenPhim: "",
       trailer: "",
@@ -25,6 +56,7 @@ const AddMovie = () => {
       hinhAnh: undefined,
     },
     mode: "all",
+    resolver: yupResolver(schemaAddMovie),
   });
 
   // Delete Img
@@ -108,16 +140,23 @@ const AddMovie = () => {
                 label="Tên phim"
                 sx={{ width: 600 }}
                 {...register("tenPhim")}
+                error={Boolean(errors.tenPhim)}
+                helperText={Boolean(errors.tenPhim) && errors.tenPhim.message}
               />
+
               <TextField
                 label="Trailer"
                 sx={{ width: 600 }}
                 {...register("trailer")}
+                error={Boolean(errors.trailer)}
+                helperText={Boolean(errors.trailer) && errors.trailer.message}
               />
               <TextField
                 label="Mô tả"
                 sx={{ width: 600 }}
                 {...register("moTa")}
+                error={Boolean(errors.moTa)}
+                helperText={Boolean(errors.moTa) && errors.moTa.message}
               />
               <Controller
                 control={control}
@@ -143,6 +182,8 @@ const AddMovie = () => {
                 label="Đánh giá"
                 sx={{ width: 600 }}
                 {...register("danhGia")}
+                error={Boolean(errors.danhGia)}
+                helperText={Boolean(errors.danhGia) && errors.danhGia.message}
               />
 
               {!file && (
@@ -168,7 +209,6 @@ const AddMovie = () => {
                   </Button>
                 </>
               )}
-
               <Button variant="contained" size="large" type="submit">
                 Thêm Phim
               </Button>

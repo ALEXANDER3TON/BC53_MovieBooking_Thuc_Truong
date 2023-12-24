@@ -8,6 +8,7 @@ import AdminFooter from "../../Components/Admin/AdminFooter/AdminFooter";
 import { Stack } from "@mui/material";
 import AdminMovieTable from "../../Components/Admin/AdminMenu/AdminMovieTable";
 import AdminUserTable from "../../Components/Admin/AdminUserTable";
+import AddUser from "../../Module/Admin/AdminMovie/AddUser/AddUser";
 
 const AdminLayout = () => {
   return (
@@ -18,6 +19,7 @@ const AdminLayout = () => {
           <DashBoard />
           {/* <AdminMovieTable /> */}
           {/* <AdminUserTable /> */}
+          <AddUser />
         </Stack>
         <AdminFooter />
       </Stack>
