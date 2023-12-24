@@ -85,14 +85,14 @@ export const userType = async () => {
   }
 };
 
-// Quản lý người dùng
-export const addUser = async (formData) => {
+// Thêm người dùng
+export const addUser = async () => {
   try {
-    const response = await fetcher.post(
-      "/QuanLyNguoiDung/ThemNguoiDung",
-      formData
-    );
-    return response.data.content;
+    const response = await fetcher.post("/QuanLyNguoiDung/ThemNguoiDung");
+
+    console.log("respon", response.data);
+
+    // return response.data.content;
   } catch (err) {
     throw "Error!!";
   }

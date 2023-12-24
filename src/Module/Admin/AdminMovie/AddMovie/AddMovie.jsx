@@ -56,7 +56,7 @@ const AddMovie = () => {
       hinhAnh: undefined,
     },
     mode: "all",
-    resolver: yupResolver(schemaAddMovie),
+    // resolver: yupResolver(schemaAddMovie),
   });
 
   // Delete Img

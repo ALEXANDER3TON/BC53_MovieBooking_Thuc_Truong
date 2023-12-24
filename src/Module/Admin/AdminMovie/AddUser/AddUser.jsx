@@ -10,10 +10,16 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { GROUP_CODE } from "../../../../constant";
+import { FormControl, InputLabel, MenuItem } from "@material-ui/core";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { addUser, getListUser, userType } from "../../../../APIs/adminAPIS";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const AddUser = () => {
+  const isUserAdmin = true;
+  const defaultUserRole = isUserAdmin ? "QuanTri" : "KhachHang";
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       taiKhoan: "",
@@ -25,19 +31,38 @@ const AddUser = () => {
       hoTen: "",
     },
     mode: "all",
+    // resolver: yupResolver(schemaAddUser),
+  });
+
+  const { data: typeUser } = useQuery({
+    queryKey: ["type-user"],
+    queryFn: userType,
   });
 
   const onSubmit = (formValues) => {
-    const formData = new FormData();
+    const body = new FormData();
     formData.append("taiKhoan", formValues.taiKhoan);
     formData.append("matKhau", formValues.matKhau);
     formData.append("email", formValues.email);
-    formData.append("soDT", formValues.soDT);
+    formData.append("soDt", formValues.soDt);
     formData.append("maNhom", formValues.maNhom);
     formData.append("maLoaiNguoiDung", formValues.maLoaiNguoiDung);
     formData.append("hoTen", formValues.hoTen);
+    handleAddUser(body);
+    console.log("handleAddUser(formData): ", handleAddUser(formData));
   };
 
+  const { mutate: handleAddUser } = useMutation({
+    mutationFn: addUser,
+    onSuccess: (data) => {
+      // QueryClient.refetchQueries(["type-user"]);
+      console.log("Add User", data);
+    },
+  });
+
+  // const schemaAddUser = yup.object({
+  //   taiKhoan: yup.string().required("Vui lòng nhập tài khoản"),
+  // });
   return (
     <Box>
       <Typography
@@ -97,11 +122,29 @@ const AddUser = () => {
                 // helperText={Boolean(errors.hoTen) && errors.hoTen.message}
               />
               {/* Select */}
-              <Select>
-                <option value="Khach Hang">Khách hàng</option>
-                <option value="Quan Tri">Quản trị</option>
-              </Select>
-
+              <FormControl fullWidth>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  style={{ marginLeft: 15 }}
+                ></InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Khách Hàng"
+                  {...register("maLoaiNguoiDung")}
+                  defaultValue={defaultUserRole}
+                >
+                  {typeUser &&
+                    typeUser.map((item) => (
+                      <MenuItem
+                        value={item.maLoaiNguoiDung}
+                        key={item.maLoaiNguoiDung}
+                      >
+                        {item.tenLoai}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
               <Button variant="contained" size="large" type="submit">
                 Thêm người dùng
               </Button>

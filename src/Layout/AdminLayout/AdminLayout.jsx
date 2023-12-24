@@ -19,7 +19,7 @@ const AdminLayout = () => {
           <DashBoard />
           {/* <AdminMovieTable /> */}
           {/* <AdminUserTable /> */}
-          <AddUser />
+          {/* <AddUser /> */}
         </Stack>
         <AdminFooter />
       </Stack>

@@ -22,6 +22,7 @@ import {
 } from "@mui/icons-material";
 import { Navigate, useNavigate } from "react-router-dom";
 import { PATH } from "../../../Routes/path";
+import AddUser from "../../../Module/Admin/AdminMovie/AddUser/AddUser";
 const data = [
   { icon: <People />, label: "Quản lý người dùng" },
   { icon: <Dns />, label: "Quản lý phim" },
@@ -45,24 +46,24 @@ const FireNav = styled(List)({
 });
 
 const DashBoard = () => {
+  const [selectedComponent, setSelectedComponent] = useState("Quản lý phim");
   const [open, setOpen] = useState(true);
-  const [showAddMovie, setShowAddMovie] = useState(false);
-  const [showMovieTable, setShowMovieTable] = useState(false);
-  const [showUserTable, setShowUserTable] = useState(false);
-  const [hosting, setHosting] = useState(false);
 
   const handleAddMovieClick = (label) => {
     if (label === "Thêm phim") {
-      setShowAddMovie(!showAddMovie);
+      setSelectedComponent("Thêm phim");
     }
     if (label === "Quản lý phim") {
-      setShowMovieTable(!showMovieTable);
+      setSelectedComponent("Quản lý phim");
     }
     if (label === "Quản lý người dùng") {
-      setShowUserTable(!showUserTable);
+      setSelectedComponent("Quản lý người dùng");
+    }
+    if (label === "Thêm người dùng") {
+      setSelectedComponent("Thêm người dùng");
     }
     if (label === "Hosting") {
-      setHosting(!hosting);
+      setSelectedComponent("Hosting");
     }
   };
   return (
@@ -150,13 +151,11 @@ const DashBoard = () => {
           </FireNav>
         </Paper>
       </ThemeProvider>
-      {showAddMovie && <AddMovie />}
-      {""}
-      {showMovieTable && <AdminMovieTable />}
-      {""}
-      {showUserTable && <AdminUserTable />}
-      {""}
-      {hosting && <Navigate to={PATH.HOME} />}
+      {selectedComponent === "Thêm phim" && <AddMovie />}
+      {selectedComponent === "Quản lý phim" && <AdminMovieTable />}
+      {selectedComponent === "Quản lý người dùng" && <AdminUserTable />}
+      {selectedComponent === "Thêm người dùng" && <AddUser />}
+      {selectedComponent === "Hosting" && <Navigate to={PATH.HOME} />}
     </Box>
   );
 };
