@@ -56,11 +56,12 @@ const Showing = () => {
           boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           borderRadius: 3
         }}
+        className="showing"
       >
         <Grid container spacing={3} padding={3}>
           {currentPageMovie.map((phim) => {
             return (
-              <Grid item key={phim.maPhim} xs={3} >
+              <Grid item key={phim.maPhim} xs={9} md={5} lg={3}>
                 <Card  className={style.cardItem}>
                   <Box
                     className={style.overlay}

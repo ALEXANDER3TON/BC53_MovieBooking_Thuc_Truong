@@ -38,7 +38,7 @@ const QuickBooking = () => {
   const cumRap = heThongRap?.map((item) => item.cumRapChieu);
 
   return (
-    <Container className={style.quickBooking}>
+    <Container className={style.quickBooking} >
       <Stack
         direction={"row"}
         divider={<Divider orientation="vertical" flexItem />}
