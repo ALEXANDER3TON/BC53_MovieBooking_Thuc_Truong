@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { GROUP_CODE } from "../../../../constant";
-import { FormControl, InputLabel, MenuItem } from "@material-ui/core";
+import { FormControl, InputLabel, MenuItem } from "@mui/material";
 import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { addUser, getListUser, userType } from "../../../../APIs/adminAPIS";
 import * as yup from "yup";
