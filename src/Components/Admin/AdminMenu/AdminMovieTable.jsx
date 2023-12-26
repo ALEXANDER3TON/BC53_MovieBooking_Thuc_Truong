@@ -6,7 +6,7 @@ import {
   TableBody,
   TableHead,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { getListMovieAPI } from "../../../APIs/movieAPI";

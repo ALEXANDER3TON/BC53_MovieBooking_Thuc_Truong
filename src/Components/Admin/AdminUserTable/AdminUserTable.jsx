@@ -5,7 +5,7 @@ import {
   TableBody,
   TableHead,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { deleteUserAPI, getListUser } from "../../../APIs/adminAPIS";

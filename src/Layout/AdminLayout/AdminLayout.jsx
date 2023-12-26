@@ -1,4 +1,4 @@
-import { Box, Grid, makeStyles } from "@material-ui/core";
+import { Box, Grid, makeStyles } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import AdminHeader from "../../Components/Admin/AdminHeader/AdminHeader";
