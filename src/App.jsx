@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PATH } from "./Routes/path";
 import MainLayout from "./Layout/MainLayout";
@@ -12,9 +11,6 @@ import AdminLayout from "./Layout/AdminLayout/AdminLayout";
 
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-
-import { UserProvider } from "./contexts/useContext/useContext";
-import AddUser from "./Module/Admin/AdminMovie/AddUser/AddUser";
 
 function App() {
   return (

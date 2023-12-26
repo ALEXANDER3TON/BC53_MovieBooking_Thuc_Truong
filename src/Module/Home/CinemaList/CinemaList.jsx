@@ -70,6 +70,7 @@ const CinemaList = () => {
           borderRadius:3,
           boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         }}
+        id="cinema"
       >
         <Grid container>
           <Grid item xs={1}>

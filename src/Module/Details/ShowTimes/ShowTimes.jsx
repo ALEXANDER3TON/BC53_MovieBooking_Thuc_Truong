@@ -12,7 +12,8 @@ import {
 } from "@mui/material";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -43,7 +44,7 @@ function a11yProps(index) {
 const ShowTimes = ({ movieID }) => {
   const navigate = useNavigate();
   const [value, setValue] = useState("");
-
+  const { user } = useSelector((state) => state.User);
   const handleChange = (newValue) => {
     setValue(newValue);
   };
@@ -67,7 +68,16 @@ const ShowTimes = ({ movieID }) => {
   }, [cinemaSystem]);
   return (
     <Container>
-      <Box sx={{ flexGrow: 1, bgcolor: "background.paper", display: "flex" , padding:3, height:390, overflow:"scroll"}}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          bgcolor: "background.paper",
+          display: "flex",
+          padding: 3,
+          height: 390,
+          overflow: "scroll",
+        }}
+      >
         <Tabs
           orientation="vertical"
           variant="scrollable"
@@ -103,7 +113,6 @@ const ShowTimes = ({ movieID }) => {
                     </Typography>
                     <Stack spacing={2} direction={"row"}>
                       {rap.lichChieuPhim.map((suat) => {
-                        
                         const times = dayjs(suat.ngayChieuGioChieu).format(
                           "DD/MM/YYYY ~ hh:mm"
                         );
@@ -111,7 +120,23 @@ const ShowTimes = ({ movieID }) => {
                           <Button
                             variant="outlined"
                             onClick={() => {
-                              navigate(`/booking/${suat.maLichChieu}`);
+                              if (!user) {
+                                Swal.fire({
+                                  title: "Chưa có tài khoản",
+                                  text: "Vui lòng đăng nhập tài khoản để đặt vé",
+                                  icon: "warning",
+                                  showCancelButton: true,
+                                  confirmButtonColor: "#3085d6",
+                                  cancelButtonColor: "#d33",
+                                  confirmButtonText: "Đăng nhập",
+                                }).then((result) => {
+                                  if (result.isConfirmed) {
+                                    navigate(PATH.LOG_IN);
+                                  }
+                                });
+                              } else {
+                                navigate(`/booking/${suat.maLichChieu}`);
+                              }
                             }}
                           >
                             {times}
