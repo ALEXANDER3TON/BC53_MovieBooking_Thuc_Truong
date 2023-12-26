@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { getListBookingAPI } from "../../APIs/bookingAPIs";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import ChairList from "./ChairList";
 import PayBill from "./PayBill";
 import Lottie from "lottie-react";
@@ -37,17 +37,14 @@ const BookingPagse = () => {
             paddingTop: 12,
           }}
         >
-          <Box display={"grid"} gridTemplateColumns={"repeat(12, 1fr)"} gap={3}>
-            <Box gridColumn="span 8">
-              
-              <Box sx={{ margin: "auto" }}>
-                <ChairList listChairInfo={listChairInfo} />
-              </Box>
-            </Box>
-            <Box gridColumn="span 4">
+          <Grid container spacing={3}>
+            <Grid item xs={11} md={8}>
+              <ChairList listChairInfo={listChairInfo} />
+            </Grid>
+            <Grid item xs={11} md={4}>
               <PayBill movieInfo={movieInfo} />
-            </Box>
-          </Box>
+            </Grid>
+          </Grid>
         </Box>
       )}
     </Container>

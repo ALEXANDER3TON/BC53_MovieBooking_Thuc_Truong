@@ -20,7 +20,7 @@ const MainLayout = () => {
       ) : (
         <Box>
           <Header/>
-          <Outlet />
+          <Outlet/>
           <Footer/>
         </Box>
       )}

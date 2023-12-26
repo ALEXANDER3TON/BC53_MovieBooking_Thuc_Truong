@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import { getListMovieAPI } from "../../../APIs/movieAPI";
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
 import style from "./showing.module.scss";
@@ -22,7 +22,7 @@ import ReactPaginate from "react-paginate";
 
 import Trailer from "../Trailer";
 
-const Showing = () => {
+const Showing = ({ref}) => {
   const navigate = useNavigate();
   const {
     data = [],
@@ -57,6 +57,8 @@ const Showing = () => {
           borderRadius: 3
         }}
         className="showing"
+        id="lichChieu"
+        
       >
         <Grid container spacing={3} padding={3}>
           {currentPageMovie.map((phim) => {
@@ -167,4 +169,4 @@ const Showing = () => {
   );
 };
 
-export default Showing;
+export default Showing ;

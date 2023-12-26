@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardMedia,
   Divider,
+  Grid,
   Typography,
 } from "@mui/material";
 import React from "react";
@@ -18,15 +19,17 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { bookingAPI } from "../../APIs/bookingAPIs";
 import { BookingPageAction } from "../../Store/BookingPagesSlice/slice";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { PATH } from "../../Routes/path";
 
 const PayBill = ({ movieInfo = {} }) => {
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const movieID = movieInfo.maLichChieu;
 
   const { chairBooking } = useSelector((state) => state.BookingPage);
-
+  const { user } = useSelector((state) => state.User);
   const gheThuong = [...chairBooking].filter(
     (item) => item.loaiGhe === "Thuong"
   );
@@ -49,9 +52,27 @@ const PayBill = ({ movieInfo = {} }) => {
   };
   return (
     <Box>
-      <Box>
-        
-      </Box>
+      <Grid container spacing={1}>
+        <Grid item xs={5}>
+          <Box className={style.chair}></Box>
+          <Typography>Ghế Thường</Typography>
+        </Grid>
+        <Grid item xs={5}>
+          <Box
+            className={cn(style.vipChair, style.chair)}
+            sx={{ pointerEvents: "none" }}
+          ></Box>
+          <Typography>Ghế Vip</Typography>
+        </Grid>
+        <Grid item xs={5}>
+          <Box className={cn(style.chair, style.booking)}></Box>
+          <Typography>Ghế Đang Đặt</Typography>
+        </Grid>
+        <Grid item xs={5}>
+          <Box className={cn(style.chair, style.booked)}></Box>
+          <Typography>Ghế Đã Đặt</Typography>
+        </Grid>
+      </Grid>
       <Card sx={{ padding: 1 }}>
         <Box sx={{ display: "flex" }}>
           <CardMedia
@@ -149,32 +170,48 @@ const PayBill = ({ movieInfo = {} }) => {
                 margin: "auto",
               }}
               onClick={() => {
-                if (chairBooking.length > 0) {
+                if (!user) {
                   Swal.fire({
-                    title: "Xác Nhận",
-                    text: "Bạn có chắc muốn đặt vé này không?",
+                    title: "Chưa có tài khoản",
+                    text: "Vui lòng đăng nhập tài khoản để đặt vé",
                     icon: "warning",
                     showCancelButton: true,
-                    cancelButtonText: "Hủy",
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Xác nhận",
+                    confirmButtonText: "Đăng nhập",
                   }).then((result) => {
                     if (result.isConfirmed) {
-                      Swal.fire({
-                        title: "Trạng Thái",
-                        text: "Đặt vé thành công",
-                        icon: "success",
-                      });
-                      handleBookingList(movieID, chairBooking);
+                      navigate(PATH.LOG_IN);
                     }
                   });
                 } else {
-                  Swal.fire({
-                    icon: "error",
-                    title: "Lỗi",
-                    text: "Vui lòng chọn ghế",
-                  });
+                  if (chairBooking.length > 0) {
+                    Swal.fire({
+                      title: "Xác Nhận",
+                      text: "Bạn có chắc muốn đặt vé này không?",
+                      icon: "warning",
+                      showCancelButton: true,
+                      cancelButtonText: "Hủy",
+                      confirmButtonColor: "#3085d6",
+                      cancelButtonColor: "#d33",
+                      confirmButtonText: "Xác nhận",
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        Swal.fire({
+                          title: "Trạng Thái",
+                          text: "Đặt vé thành công",
+                          icon: "success",
+                        });
+                        handleBookingList(movieID, chairBooking);
+                      }
+                    });
+                  } else {
+                    Swal.fire({
+                      icon: "error",
+                      title: "Lỗi",
+                      text: "Vui lòng chọn ghế",
+                    });
+                  }
                 }
               }}
             >

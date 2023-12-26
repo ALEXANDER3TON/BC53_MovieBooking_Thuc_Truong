@@ -18,7 +18,7 @@ const ChairList = ({ listChairInfo }) => {
         sx={{
           border: "3px solid",
           padding: "10px 20px",
-          width: 540,
+          width: "80%",
           margin: "auto",
           textAlign: "center",
           marginBottom: 3,

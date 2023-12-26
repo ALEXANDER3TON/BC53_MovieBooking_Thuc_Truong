@@ -6,7 +6,7 @@ import logo from "../../../constant/logo.png";
 import "../../../Style/base.scss";
 const PhoneApp = () => {
   return (
-    <Box className={style.phoneAppBackGround}>
+    <Box className={style.phoneAppBackGround} id="app">
       <Box
         display={"flex"}
         justifyContent={"center"}
